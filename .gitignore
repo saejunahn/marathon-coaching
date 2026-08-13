@@ -1,4 +1,12 @@
+# Public Web App Only - Exclude Internal / Personal SSOT Docs from Public Git
 .env
-.agents/mcp_config.json
+.agents/
 .venv/
 garmin_tokens/
+.DS_Store
+.tmp.*/
+
+# Private Personal Markdown & Agent Docs (Synced via Google Drive)
+agent.md
+running_ssot.md
+running_playlist.md
