@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=640, initial-scale=0.55, maximum-scale=2.0">
+  <title>Running Calendar - August 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #121316;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Outfit', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      padding: 20px;
+    }
+
+    /* Absolute Original Master Poster Frame (Exact 600px x 800px) */
+    .calendar-card {
+      width: 600px;
+      height: 800px;
+      background-color: #FAF8F5;
+      border-radius: 6px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+      padding: 42px 36px 24px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #1a1c20;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Header Section */
+    .header {
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #111317;
+      line-height: 1.05;
+      white-space: nowrap;
+    }
+
+    .sub-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: #4a4e57;
+      margin-top: 3px;
+    }
+
+    /* Header Stats Chip */
+    .stats-chip {
+      border: 1px solid #dcd5c7;
+      border-radius: 2px;
+      padding: 5px 10px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      color: #4a4e57;
+      background-color: #f4efe6;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .stats-chip span {
+      font-weight: 700;
+      color: #111317;
+    }
+
+    /* Calendar Outer Container */
+    .calendar-wrapper {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      margin-bottom: 14px;
+      border-top: 1px solid #dcd5c7;
+      border-left: 1px solid #dcd5c7;
+      border-bottom: none;
+    }
+
+    .weekday-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      background-color: #f3ede2;
+      border-bottom: 1px solid #dcd5c7;
+      flex-shrink: 0;
+    }
+
+    .weekday-header {
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      color: #2b2e35;
+      padding: 6px 0;
+      border-right: 1px solid #dcd5c7;
+      text-transform: uppercase;
+    }
+
+    /* Grid Days Layout (6 Rows x 7 Columns) */
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      flex: 1;
+      min-height: 0;
+    }
+
+    .day-cell {
+      border-right: 1px solid #dcd5c7;
+      border-bottom: 1px solid #dcd5c7;
+      padding: 5px 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      background-color: transparent;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .day-cell.empty {
+      background-color: rgba(235, 228, 218, 0.4);
+    }
+
+    /* Serif Date Number & Header */
+    .date-header {
+      display: flex;
+      display: -webkit-flex;
+      justify-content: space-between;
+      -webkit-justify-content: space-between;
+      align-items: center;
+      -webkit-align-items: center;
+      margin-bottom: 8.5px;
+      width: 100%;
+    }
+
+    .date-num {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #0f1115;
+      line-height: 1;
+      letter-spacing: -0.3px;
+    }
+
+    .completed-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: #B83B3B;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      flex-shrink: 0;
+      -webkit-flex-shrink: 0;
+    }
+
+    /* Workout Tag */
+    .workout-tag {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    /* Fine Ink Rule Accent */
+    .badge-bar {
+      height: 2.5px;
+      border-radius: 1px;
+      width: 100%;
+      margin-bottom: 3px;
+    }
+
+    /* Segmented Fine Ink Line */
+    .badge-bar-segmented {
+      height: 2.5px;
+      border-radius: 1px;
+      width: 100%;
+      margin-bottom: 3px;
+      display: flex;
+      gap: 1.5px;
+      overflow: hidden;
+    }
+
+    .bar-segment {
+      height: 100%;
+    }
+
+    /* Unified 3-Line Workout Structure */
+    .workout-dist {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.05;
+      color: #111317;
+      margin-bottom: -1px;
+    }
+
+    .workout-name {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+      line-height: 1.1;
+      color: #111317;
+      word-break: keep-all;
+      margin-bottom: 1px;
+    }
+
+    .workout-subtext {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      line-height: 1.2;
+      color: #5c6270;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Option 1: Tracksmith Ivy Palette */
+    .bar-recovery { background-color: #3B7EA1; }  /* Recovery (5:50 ~ 6:20) - Ocean Blue */
+    .bar-steady { background-color: #1A5E4F; }    /* Steady (5:25 ~ 5:45) - Forest Emerald */
+    .bar-tempo { background-color: #E06A26; }     /* Tempo (4:45 ~ 5:10) - Warm Tangerine */
+    .bar-interval { background-color: #B83B3B; }  /* Interval (4:20 ~ 4:40) - Classic Burgundy */
+    .bar-strides { background-color: #C59B27; }   /* Strides (3:50 ~ 4:10) - Sand Gold */
+
+    /* Pace Chart Footer Section */
+    .pace-chart-section {
+      border-top: 1px solid #dcd5c7;
+      padding-top: 10px;
+      flex-shrink: 0;
+    }
+
+    .pace-chart-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #111317;
+      margin-bottom: 6px;
+    }
+
+    .pace-chart-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px 12px;
+    }
+
+    .pace-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-box {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .legend-text {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: #4a4e57;
+      white-space: nowrap;
+    }
+
+    .legend-text span {
+      font-weight: 600;
+      color: #111317;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calendar-card">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <div class="main-title">Running Calendar</div>
+        <div class="sub-title">August 2026</div>
+      </div>
+      <div class="stats-chip">
+        TARGET: <span>88.0 KM</span> | <span>11 SESSIONS</span>
+      </div>
+    </div>
+
+    <!-- Calendar Wrapper -->
+    <div class="calendar-wrapper">
+      <!-- Weekday Headers -->
+      <div class="weekday-row">
+        <div class="weekday-header">MON</div>
+        <div class="weekday-header">TUE</div>
+        <div class="weekday-header">WED</div>
+        <div class="weekday-header">THU</div>
+        <div class="weekday-header">FRI</div>
+        <div class="weekday-header">SAT</div>
+        <div class="weekday-header">SUN</div>
+      </div>
+
+      <!-- Days Grid (6 Rows x 7 Columns) -->
+      <div class="days-grid">
+        <!-- Row 1 -->
+        <div class="day-cell empty"></div>
+        <div class="day-cell empty"></div>
+        <div class="day-cell empty"></div>
+        <div class="day-cell empty"></div>
+        <div class="day-cell empty"></div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">01</div></div></div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">02</div></div></div>
+
+        <!-- Row 2 -->
+        <div class="day-cell"><div class="date-header"><div class="date-num">03</div></div></div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">04</div></div></div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">05</div></div></div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">06</div></div></div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">07</div></div></div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">08</div></div></div>
+        <div class="day-cell">
+          <div class="date-header">
+            <div class="date-num">09</div>
+            <div class="completed-dot"></div>
+          </div>
+          <div class="workout-tag">
+            <div class="badge-bar bar-recovery"></div>
+            <div class="workout-dist">5km</div>
+            <div class="workout-name">Recovery</div>
+            <div class="workout-subtext">복귀 웰컴런</div>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="day-cell"><div class="date-header"><div class="date-num">10</div></div></div>
+        <div class="day-cell">
+          <div class="date-header">
+            <div class="date-num">11</div>
+            <div class="completed-dot"></div>
+          </div>
+          <div class="workout-tag">
+            <div class="badge-bar bar-recovery"></div>
+            <div class="workout-dist">7km</div>
+            <div class="workout-name">Recovery</div>
+            <div class="workout-subtext">이지 조깅</div>
+          </div>
+        </div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">12</div></div></div>
+        <div class="day-cell">
+          <div class="date-header">
+            <div class="date-num">13</div>
+            <div class="completed-dot"></div>
+          </div>
+          <div class="workout-tag">
+            <!-- Segmented Fine Ink Line -->
+            <div class="badge-bar-segmented">
+              <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+              <div class="bar-segment bar-tempo" style="flex: 3;"></div>
+              <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+            </div>
+            <div class="workout-dist">6km</div>
+            <div class="workout-name">Tempo</div>
+            <div class="workout-subtext">1.5k + 3k + 1.5k</div>
+          </div>
+        </div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">14</div></div></div>
+        <div class="day-cell">
+          <div class="date-header"><div class="date-num">15</div></div>
+          <div class="workout-tag">
+            <!-- Segmented Fine Ink Line -->
+            <div class="badge-bar-segmented">
+              <div class="bar-segment bar-recovery" style="flex: 5;"></div>
+              <div class="bar-segment bar-steady" style="flex: 5;"></div>
+            </div>
+            <div class="workout-dist">10km</div>
+            <div class="workout-name">Steady</div>
+            <div class="workout-subtext">5k + 5k 빌드업</div>
+          </div>
+        </div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">16</div></div></div>
+
+        <!-- Row 4 -->
+        <div class="day-cell"><div class="date-header"><div class="date-num">17</div></div></div>
+        <div class="day-cell">
+          <div class="date-header"><div class="date-num">18</div></div>
+          <div class="workout-tag">
+            <div class="badge-bar bar-recovery"></div>
+            <div class="workout-dist">8km</div>
+            <div class="workout-name">Recovery</div>
+            <div class="workout-subtext">이지 조깅</div>
+          </div>
+        </div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">19</div></div></div>
+        <div class="day-cell">
+          <div class="date-header"><div class="date-num">20</div></div>
+          <div class="workout-tag">
+            <!-- Segmented Fine Ink Line -->
+            <div class="badge-bar-segmented">
+              <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+              <div class="bar-segment bar-tempo" style="flex: 4;"></div>
+              <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+            </div>
+            <div class="workout-dist">7km</div>
+            <div class="workout-name">Tempo</div>
+            <div class="workout-subtext">1.5k + 4k + 1.5k</div>
+          </div>
+        </div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">21</div></div></div>
+        <div class="day-cell">
+          <div class="date-header"><div class="date-num">22</div></div>
+          <div class="workout-tag">
+            <!-- Segmented Fine Ink Line -->
+            <div class="badge-bar-segmented">
+              <div class="bar-segment bar-recovery" style="flex: 5;"></div>
+              <div class="bar-segment bar-steady" style="flex: 6;"></div>
+            </div>
+            <div class="workout-dist">11km</div>
+            <div class="workout-name">Steady</div>
+            <div class="workout-subtext">5k + 6k 빌드업</div>
+          </div>
+        </div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">23</div></div></div>
+
+        <!-- Row 5 -->
+        <div class="day-cell"><div class="date-header"><div class="date-num">24</div></div></div>
+        <div class="day-cell">
+          <div class="date-header"><div class="date-num">25</div></div>
+          <div class="workout-tag">
+            <div class="badge-bar bar-recovery"></div>
+            <div class="workout-dist">8km</div>
+            <div class="workout-name">Recovery</div>
+            <div class="workout-subtext">이지 조깅</div>
+          </div>
+        </div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">26</div></div></div>
+        <div class="day-cell">
+          <div class="date-header"><div class="date-num">27</div></div>
+          <div class="workout-tag">
+            <!-- Segmented Fine Ink Line -->
+            <div class="badge-bar-segmented">
+              <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+              <div class="bar-segment bar-tempo" style="flex: 4;"></div>
+              <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+            </div>
+            <div class="workout-dist">7km</div>
+            <div class="workout-name">Tempo</div>
+            <div class="workout-subtext">1.5k + 4k + 1.5k</div>
+          </div>
+        </div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">28</div></div></div>
+        <div class="day-cell">
+          <div class="date-header"><div class="date-num">29</div></div>
+          <div class="workout-tag">
+            <!-- Segmented Bar: Build-up Steady -->
+            <div class="badge-bar-segmented">
+              <div class="bar-segment bar-recovery" style="flex: 6;"></div>
+              <div class="bar-segment bar-steady" style="flex: 6;"></div>
+            </div>
+            <div class="workout-dist">12km</div>
+            <div class="workout-name">Steady</div>
+            <div class="workout-subtext">6k + 6k 빌드업</div>
+          </div>
+        </div>
+        <div class="day-cell"><div class="date-header"><div class="date-num">30</div></div></div>
+
+        <!-- Row 6 -->
+        <div class="day-cell">
+          <div class="date-header"><div class="date-num">31</div></div>
+          <div class="workout-tag">
+            <div class="badge-bar bar-recovery"></div>
+            <div class="workout-dist">7km</div>
+            <div class="workout-name">Recovery</div>
+            <div class="workout-subtext">이지 조깅</div>
+          </div>
+        </div>
+        <div class="day-cell empty"></div>
+        <div class="day-cell empty"></div>
+        <div class="day-cell empty"></div>
+        <div class="day-cell empty"></div>
+        <div class="day-cell empty"></div>
+        <div class="day-cell empty"></div>
+      </div>
+    </div>
+
+    <!-- Pace Chart Footer Section -->
+    <div class="pace-chart-section">
+      <div class="pace-chart-title">Pace Chart</div>
+      <div class="pace-chart-grid">
+        <div class="pace-legend-item">
+          <div class="legend-box bar-recovery"></div>
+          <div class="legend-text">Recovery (<span>5:50 ~ 6:20</span>)</div>
+        </div>
+        <div class="pace-legend-item">
+          <div class="legend-box bar-steady"></div>
+          <div class="legend-text">Steady (<span>5:25 ~ 5:45</span>)</div>
+        </div>
+        <div class="pace-legend-item">
+          <div class="legend-box bar-tempo"></div>
+          <div class="legend-text">Tempo (<span>4:45 ~ 5:10</span>)</div>
+        </div>
+        <div class="pace-legend-item">
+          <div class="legend-box bar-interval"></div>
+          <div class="legend-text">Interval (<span>4:20 ~ 4:40</span>)</div>
+        </div>
+        <div class="pace-legend-item">
+          <div class="legend-box bar-strides"></div>
+          <div class="legend-text">Strides (<span>3:50 ~ 4:10</span>)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

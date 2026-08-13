@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Running Calendar - Headline Font Candidates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Bebas+Neue&family=Bodoni+Moda:ital,wght@0,700;1,600&family=Cinzel:wght@700;800&family=Cormorant+Garamond:ital,wght@0,700;1,600&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,600&family=Outfit:wght@700;800&family=Playfair+Display:ital,wght@0,700;1,600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #121316;
+      color: #faf8f5;
+      font-family: 'Outfit', sans-serif;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: #faf8f5;
+    }
+    p.desc {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      width: 100%;
+    }
+    .card {
+      background-color: #FAF8F5;
+      color: #111317;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+    }
+    .font-num {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .sample-title {
+      font-size: 34px;
+      line-height: 1.05;
+      margin-bottom: 4px;
+    }
+    .sample-subtitle {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .font-info {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid #e0dad0;
+      font-size: 12px;
+      color: #555;
+      font-weight: 500;
+    }
+
+    /* Font Classes */
+    .f-bodoni .sample-title, .f-bodoni .sample-subtitle { font-family: 'Bodoni Moda', serif; }
+    .f-playfair .sample-title, .f-playfair .sample-subtitle { font-family: 'Playfair Display', serif; }
+    .f-cinzel .sample-title, .f-cinzel .sample-subtitle { font-family: 'Cinzel', serif; }
+    .f-cormorant .sample-title, .f-cormorant .sample-subtitle { font-family: 'Cormorant Garamond', serif; }
+    .f-barlow .sample-title, .f-barlow .sample-subtitle { font-family: 'Barlow Condensed', sans-serif; }
+    .f-fraunces .sample-title, .f-fraunces .sample-subtitle { font-family: 'Fraunces', serif; }
+  </style>
+</head>
+<body>
+
+  <h1>Running Calendar Headline Font Candidates</h1>
+  <p class="desc">원하시는 헤드라인 서체의 느낌을 비교해 보세요!</p>
+
+  <div class="grid">
+    <!-- Candidate 1: Bodoni Moda (Current) -->
+    <div class="card f-bodoni">
+      <div class="font-num">후보 1. Bodoni Moda (현재 적용 중)</div>
+      <div class="sample-title">Running Calendar</div>
+      <div class="sample-subtitle">August 2026</div>
+      <div class="font-info">클래식 모던 세리프 | 이탈리아 매거진 스타일</div>
+    </div>
+
+    <!-- Candidate 2: Playfair Display -->
+    <div class="card f-playfair">
+      <div class="font-num">후보 2. Playfair Display</div>
+      <div class="sample-title">Running Calendar</div>
+      <div class="sample-subtitle">August 2026</div>
+      <div class="font-info">클래식 엘레강스 세리프 | 따뜻하고 가독성 좋은 라이프스타일 매거진 폰트</div>
+    </div>
+
+    <!-- Candidate 3: Cinzel -->
+    <div class="card f-cinzel">
+      <div class="font-num">후보 3. Cinzel</div>
+      <div class="sample-title">RUNNING CALENDAR</div>
+      <div class="sample-subtitle">AUGUST 2026</div>
+      <div class="font-info">로만 클래식 세리프 | 샤프하고 권위 있는 프리미엄 타이포그래피</div>
+    </div>
+
+    <!-- Candidate 4: Cormorant Garamond -->
+    <div class="card f-cormorant">
+      <div class="font-num">후보 4. Cormorant Garamond</div>
+      <div class="sample-title">Running Calendar</div>
+      <div class="sample-subtitle">August 2026</div>
+      <div class="font-info">파인아트 에디토리얼 세리프 | 고급스럽고 얇은 수공예 세리프</div>
+    </div>
+
+    <!-- Candidate 5: Barlow Condensed -->
+    <div class="card f-barlow">
+      <div class="font-num">후보 5. Barlow Condensed</div>
+      <div class="sample-title">RUNNING CALENDAR</div>
+      <div class="sample-subtitle">AUGUST 2026</div>
+      <div class="font-info">모던 스포츠 산세리프 | 나이키/가민 스타일의 또렷하고 강렬한 스포츠 타이포</div>
+    </div>
+
+    <!-- Candidate 6: Fraunces -->
+    <div class="card f-fraunces">
+      <div class="font-num">후보 6. Fraunces</div>
+      <div class="sample-title">Running Calendar</div>
+      <div class="sample-subtitle">August 2026</div>
+      <div class="font-info">소프트 모던 세리프 | 곡선미와 볼드함이 돋보이는 모던 크래프트 폰트</div>
+    </div>
+  </div>
+
+</body>
+</html>

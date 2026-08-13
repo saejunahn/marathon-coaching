@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nike Athletic Editorial Sample</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archive&family=Barlow+Condensed:ital,wght@1,700;1,800;1,900&family=Outfit:wght@400;600;800;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #050608;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      padding: 40px;
+    }
+
+    /* 4:5 Ratio Magazine Card (540x675 / 1080x1350 scale) */
+    .nike-card {
+      width: 540px;
+      height: 675px;
+      background: #0d0f14;
+      border-radius: 16px;
+      border: 1px solid rgba(206, 255, 0, 0.15);
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(206, 255, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 36px;
+      color: #ffffff;
+    }
+
+    /* Nike Kinetic Diagonal Lines Accent Background */
+    .nike-card::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(206, 255, 0, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .nike-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0; right: 0; top: 0;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.015),
+        rgba(255, 255, 255, 0.015) 1px,
+        transparent 1px,
+        transparent 20px
+      );
+      pointer-events: none;
+    }
+
+    /* Top Brand Bar */
+    .brand-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .swoosh-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: 2px;
+      color: #ceff00;
+      text-transform: uppercase;
+    }
+
+    .edition-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #00f0ff;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Editorial Headline */
+    .headline-group {
+      margin-top: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sub-head {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #7e879a;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .main-head {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 42px;
+      line-height: 0.95;
+      letter-spacing: -1px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .main-head span {
+      color: #ceff00;
+    }
+
+    /* Hero Stat Box */
+    .hero-stat-box {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 4px solid #ceff00;
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      margin: 10px 0;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: #7e879a;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: italic;
+      font-weight: 800;
+      font-size: 32px;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .stat-num span {
+      font-size: 14px;
+      color: #ceff00;
+      font-style: normal;
+      margin-left: 2px;
+    }
+
+    .divider-line {
+      width: 1px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Technical Performance Radar / Bars */
+    .perf-panel {
+      background: rgba(13, 15, 20, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .panel-title {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #7e879a;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .bar-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .bar-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .bar-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #d0d6e0;
+      width: 130px;
+    }
+
+    .bar-track {
+      flex: 1;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      margin: 0 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00f0ff 0%, #ceff00 100%);
+      border-radius: 3px;
+    }
+
+    .bar-val {
+      font-size: 11px;
+      font-weight: 800;
+      color: #ffffff;
+      width: 32px;
+      text-align: right;
+    }
+
+    /* Editorial Quote */
+    .quote-box {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #b0b8c8;
+      font-weight: 500;
+      position: relative;
+      z-index: 2;
+      border-left: 2px solid rgba(255, 255, 255, 0.2);
+      padding-left: 14px;
+    }
+
+    .quote-box b {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    .nike-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .athlete-id {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+
+    .athlete-id span {
+      color: #ceff00;
+    }
+
+    .gear-badge {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: #ceff00;
+      color: #000000;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nike-card">
+    <!-- Top Brand Bar -->
+    <div class="brand-bar">
+      <div class="swoosh-label">ATHLETIC EDITORIAL</div>
+      <div class="edition-tag">10K SPEED SYSTEM</div>
+    </div>
+
+    <!-- Editorial Headline -->
+    <div class="headline-group">
+      <div class="sub-head">AUGUST 2026 RE-ADAPTATION</div>
+      <div class="main-head">SPEED IS BUILT IN <span>CONSISTENCY.</span></div>
+    </div>
+
+    <!-- Hero Key Stats -->
+    <div class="hero-stat-box">
+      <div class="stat-item">
+        <div class="stat-title">10K CAREER PR</div>
+        <div class="stat-num">43'00"<span>~4:23/km</span></div>
+      </div>
+      <div class="divider-line"></div>
+      <div class="stat-item">
+        <div class="stat-title">HALF PR</div>
+        <div class="stat-num">1:39:00<span>~4:42/km</span></div>
+      </div>
+      <div class="divider-line"></div>
+      <div class="stat-item">
+        <div class="stat-title">BASE MILEAGE</div>
+        <div class="stat-num">1,041<span>km</span></div>
+      </div>
+    </div>
+
+    <!-- Technical Performance Breakdown -->
+    <div class="perf-panel">
+      <div class="panel-title">PERFORMANCE METRICS BREAKDOWN</div>
+      
+      <div class="bar-row">
+        <span class="bar-label">DISTANCE TOLERANCE</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 96%;"></div></div>
+        <span class="bar-val">4.8</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">BASE AEROBIC</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 88%;"></div></div>
+        <span class="bar-val">4.4</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">PACE STABILITY</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 88%;"></div></div>
+        <span class="bar-val">4.4</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">LACTATE THRESHOLD</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 78%;"></div></div>
+        <span class="bar-val">3.9</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">SPEED RESERVE</span>
+        <div class="bar-track"><div class="bar-fill" style="width: 84%;"></div></div>
+        <span class="bar-val">4.2</span>
+      </div>
+    </div>
+
+    <!-- Editorial Quote -->
+    <div class="quote-box">
+      <b>"1,000km 유산소 밑천 위에 템포런을 더하다."</b><br>
+      바쁜 일상 속 주 3회, 월 100km 고효율 스피드 트레이닝으로 10km 43분대 PR 단축을 조준하다.
+    </div>
+
+    <!-- Footer -->
+    <div class="nike-footer">
+      <div class="athlete-id">ATHLETE <span>AHN SEJUN</span></div>
+      <div class="gear-badge">ENDORPHIN SPEED 5</div>
+    </div>
+  </div>
+
+</body>
+</html>

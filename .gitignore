@@ -1,0 +1,4 @@
+.env
+.agents/mcp_config.json
+.venv/
+garmin_tokens/

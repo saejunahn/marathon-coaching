@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nike Athletic Editorial with Real Photography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800;1,900&family=Outfit:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #040507;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      padding: 40px;
+    }
+
+    /* 4:5 Aspect Ratio Magazine Card (540x675 / 1080x1350 scale) */
+    .nike-photo-card {
+      width: 540px;
+      height: 675px;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 36px 32px;
+      color: #ffffff;
+      box-shadow: 0 35px 75px rgba(0, 0, 0, 0.9), 0 0 50px rgba(206, 255, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Real Photography Background */
+    .bg-image {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('./runner_hero.jpg');
+      background-size: cover;
+      background-position: center 20%;
+      z-index: 1;
+      filter: contrast(1.1) brightness(0.9);
+      transition: transform 0.5s ease;
+    }
+
+    /* Gradient Overlay for Editorial Depth */
+    .bg-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(5, 7, 12, 0.85) 0%,
+        rgba(5, 7, 12, 0.3) 35%,
+        rgba(5, 7, 12, 0.75) 70%,
+        rgba(5, 7, 12, 0.95) 100%
+      );
+      z-index: 2;
+    }
+
+    /* Top Brand Bar */
+    .brand-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+    }
+
+    .brand-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: 2px;
+      color: #ceff00;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .badge-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #00f0ff;
+      background: rgba(0, 240, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 5px 12px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    /* Main Headline Over Photo */
+    .headline-wrap {
+      position: relative;
+      z-index: 3;
+      margin-top: 10px;
+    }
+
+    .kicker {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #e0e6ed;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 46px;
+      line-height: 0.92;
+      letter-spacing: -1px;
+      color: #ffffff;
+      text-transform: uppercase;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+    }
+
+    .hero-title span {
+      color: #ceff00;
+    }
+
+    /* Floating Glassmorphic Stats Grid */
+    .stats-glass-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      position: relative;
+      z-index: 3;
+      margin: 12px 0;
+    }
+
+    .glass-box {
+      background: rgba(10, 12, 18, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 12px 10px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .glass-label {
+      font-size: 9px;
+      font-weight: 700;
+      color: #9aa4b5;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+
+    .glass-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: 26px;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .glass-val span {
+      font-size: 11px;
+      color: #ceff00;
+      font-style: normal;
+      margin-left: 2px;
+    }
+
+    /* Performance Breakdown Panel */
+    .perf-panel {
+      background: rgba(8, 10, 15, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 14px 16px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .perf-head {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #8893a7;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .metric-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .metric-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .metric-lbl {
+      font-size: 10px;
+      font-weight: 700;
+      color: #d8deea;
+      width: 120px;
+    }
+
+    .bar-bg {
+      flex: 1;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      margin: 0 10px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00f0ff 0%, #ceff00 100%);
+      border-radius: 3px;
+    }
+
+    .metric-num {
+      font-size: 11px;
+      font-weight: 800;
+      color: #ffffff;
+      width: 28px;
+      text-align: right;
+    }
+
+    /* Editorial Caption */
+    .caption-box {
+      font-size: 11px;
+      line-height: 1.45;
+      color: #e2e8f0;
+      font-weight: 500;
+      position: relative;
+      z-index: 3;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      padding: 10px 14px;
+      border-radius: 8px;
+      border-left: 3px solid #ceff00;
+    }
+
+    .caption-box b {
+      color: #ceff00;
+      font-weight: 800;
+    }
+
+    /* Footer Bar */
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 12px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .athlete-name {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+    }
+
+    .athlete-name span {
+      color: #ceff00;
+    }
+
+    .gear-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: #ceff00;
+      color: #05070c;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nike-photo-card">
+    <!-- Real Photo & Overlay -->
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+
+    <!-- Header Bar -->
+    <div class="brand-bar">
+      <div class="brand-title">ATHLETIC EDITORIAL</div>
+      <div class="badge-tag">10K SPEED SYSTEM</div>
+    </div>
+
+    <!-- Main Headline -->
+    <div class="headline-wrap">
+      <div class="kicker">RUNNING ARCHIVE 2026</div>
+      <div class="hero-title">NO SHORTCUTS. <span>JUST CONSISTENCY.</span></div>
+    </div>
+
+    <!-- Key Stats Floating Glass Grid -->
+    <div class="stats-glass-grid">
+      <div class="glass-box">
+        <div class="glass-label">10K CAREER PR</div>
+        <div class="glass-val">43'00"<span>~4:23</span></div>
+      </div>
+      <div class="glass-box">
+        <div class="glass-label">HALF PR</div>
+        <div class="glass-val">1:39:00<span>~4:42</span></div>
+      </div>
+      <div class="glass-box">
+        <div class="glass-label">TOTAL BASE</div>
+        <div class="glass-val">1,041<span>km</span></div>
+      </div>
+    </div>
+
+    <!-- Technical Metrics Panel -->
+    <div class="perf-panel">
+      <div class="perf-head">
+        <span>PERFORMANCE SPECS</span>
+        <span style="color:#ceff00;">VOL. ~100KM / MONTH</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-lbl">DISTANCE TOLERANCE</span>
+        <div class="bar-bg"><div class="bar-fill" style="width: 96%;"></div></div>
+        <span class="metric-num">4.8</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-lbl">BASE AEROBIC</span>
+        <div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div>
+        <span class="metric-num">4.4</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-lbl">PACE STABILITY</span>
+        <div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div>
+        <span class="metric-num">4.4</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-lbl">LACTATE THRESHOLD</span>
+        <div class="bar-bg"><div class="bar-fill" style="width: 78%;"></div></div>
+        <span class="metric-num">3.9</span>
+      </div>
+    </div>
+
+    <!-- Editorial Caption -->
+    <div class="caption-box">
+      <b>"1,000km 베이스 위에 템포런을 더하다."</b><br>
+      주 3회, 월 100km 고효율 템포 루틴으로 10km 43분대 PR 단축 도전.
+    </div>
+
+    <!-- Footer Bar -->
+    <div class="card-footer">
+      <div class="athlete-name">ATHLETE <span>AHN SEJUN</span></div>
+      <div class="gear-tag">ENDORPHIN SPEED 5</div>
+    </div>
+  </div>
+
+</body>
+</html>

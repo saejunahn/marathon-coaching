@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Palette Candidates - Running Calendar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #121316;
+      color: #FAF8F5;
+      font-family: 'Outfit', 'Pretendard', sans-serif;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      color: #9A9386;
+      font-size: 14px;
+      margin-bottom: 36px;
+    }
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      width: 100%;
+    }
+    .option-card {
+      background-color: #FAF8F5;
+      color: #22252a;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .option-header {
+      margin-bottom: 20px;
+      border-bottom: 1.5px solid #1a1c20;
+      padding-bottom: 12px;
+    }
+    .option-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1c20;
+    }
+    .option-desc {
+      font-size: 11px;
+      color: #686e7a;
+      margin-top: 4px;
+    }
+    .swatch-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .swatch-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 10px;
+      background-color: #f5f0e6;
+      border-radius: 6px;
+    }
+    .swatch-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+    .swatch-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .swatch-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #1f2228;
+    }
+    .swatch-hex {
+      font-size: 10.5px;
+      color: #686e7a;
+    }
+    .preview-box {
+      border: 1px solid #e3ded5;
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .preview-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #333740;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .bars-container {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .bar-row {
+      display: flex;
+      gap: 3px;
+      height: 6px;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Color Palette Exploration</h1>
+  <p class="subtitle">Select the perfect 5-color palette for your cream paper (#FAF8F5) running calendar</p>
+
+  <div class="options-grid">
+    
+    <!-- Option 1 -->
+    <div class="option-card">
+      <div>
+        <div class="option-header">
+          <div class="option-title">1. Tracksmith Ivy</div>
+          <div class="option-desc">Classic Ivy League marathon aesthetic with Sand Gold Strides</div>
+        </div>
+        <div class="swatch-list">
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #3B7EA1;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Recovery (5:50 ~ 6:20)</div>
+              <div class="swatch-hex">Ocean Blue (#3B7EA1)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #1A5E4F;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Steady (5:25 ~ 5:45)</div>
+              <div class="swatch-hex">Forest Emerald (#1A5E4F)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #E06A26;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Tempo (4:45 ~ 5:10)</div>
+              <div class="swatch-hex">Warm Tangerine (#E06A26)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #B83B3B;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Interval (4:20 ~ 4:40)</div>
+              <div class="swatch-hex">Classic Burgundy (#B83B3B)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #C59B27;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Strides (3:50 ~ 4:10)</div>
+              <div class="swatch-hex">Sand Gold (#C59B27)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-label">Live Calendar Bar Harmony</div>
+        <div class="bars-container">
+          <div class="bar-row">
+            <div style="background:#3B7EA1; flex:1.5;"></div>
+            <div style="background:#E06A26; flex:3;"></div>
+            <div style="background:#3B7EA1; flex:1.5;"></div>
+          </div>
+          <div class="bar-row">
+            <div style="background:#3B7EA1; flex:5;"></div>
+            <div style="background:#1A5E4F; flex:5;"></div>
+          </div>
+          <div class="bar-row">
+            <div style="background:#B83B3B; flex:1;"></div>
+            <div style="background:#C59B27; flex:1;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 2 -->
+    <div class="option-card">
+      <div>
+        <div class="option-header">
+          <div class="option-title">2. Retro Collegiate</div>
+          <div class="option-desc">70s marathon heritage with washed Chestnut Strides</div>
+        </div>
+        <div class="swatch-list">
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #2C5282;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Recovery (5:50 ~ 6:20)</div>
+              <div class="swatch-hex">Slate Blue (#2C5282)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #4A7C59;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Steady (5:25 ~ 5:45)</div>
+              <div class="swatch-hex">Sage Green (#4A7C59)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #D97706;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Tempo (4:45 ~ 5:10)</div>
+              <div class="swatch-hex">Vintage Amber (#D97706)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #9B2C2C;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Interval (4:20 ~ 4:40)</div>
+              <div class="swatch-hex">Deep Crimson (#9B2C2C)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #8C5A45;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Strides (3:50 ~ 4:10)</div>
+              <div class="swatch-hex">Chestnut Brown (#8C5A45)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-label">Live Calendar Bar Harmony</div>
+        <div class="bars-container">
+          <div class="bar-row">
+            <div style="background:#2C5282; flex:1.5;"></div>
+            <div style="background:#D97706; flex:3;"></div>
+            <div style="background:#2C5282; flex:1.5;"></div>
+          </div>
+          <div class="bar-row">
+            <div style="background:#2C5282; flex:5;"></div>
+            <div style="background:#4A7C59; flex:5;"></div>
+          </div>
+          <div class="bar-row">
+            <div style="background:#9B2C2C; flex:1;"></div>
+            <div style="background:#8C5A45; flex:1;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 3 -->
+    <div class="option-card">
+      <div>
+        <div class="option-header">
+          <div class="option-title">3. Minimalist Muted</div>
+          <div class="option-desc">Modern tone-on-tone with Dusty Rose Copper Strides</div>
+        </div>
+        <div class="swatch-list">
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #4A6B82;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Recovery (5:50 ~ 6:20)</div>
+              <div class="swatch-hex">Muted Blue (#4A6B82)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #2D6A4F;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Steady (5:25 ~ 5:45)</div>
+              <div class="swatch-hex">Emerald Green (#2D6A4F)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #E07A5F;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Tempo (4:45 ~ 5:10)</div>
+              <div class="swatch-hex">Terracotta (#E07A5F)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #9E2A2B;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Interval (4:20 ~ 4:40)</div>
+              <div class="swatch-hex">Auburn Red (#9E2A2B)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-box" style="background-color: #B5838D;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Strides (3:50 ~ 4:10)</div>
+              <div class="swatch-hex">Dusty Copper Rose (#B5838D)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-label">Live Calendar Bar Harmony</div>
+        <div class="bars-container">
+          <div class="bar-row">
+            <div style="background:#4A6B82; flex:1.5;"></div>
+            <div style="background:#E07A5F; flex:3;"></div>
+            <div style="background:#4A6B82; flex:1.5;"></div>
+          </div>
+          <div class="bar-row">
+            <div style="background:#4A6B82; flex:5;"></div>
+            <div style="background:#2D6A4F; flex:5;"></div>
+          </div>
+          <div class="bar-row">
+            <div style="background:#9E2A2B; flex:1;"></div>
+            <div style="background:#B5838D; flex:1;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
