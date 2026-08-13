@@ -136,7 +136,7 @@
 | **[2026년 8월]** | | | | | | |
 | 2026-08-09 | Recovery | 5.01 | 29:44 | **5'56"** | Garmin 165 | 🔥 **혹서기 직후 웰컴 복귀런 (Avg HR 150, Cadence 171, Stride 0.97m, VR 8.4%, VO 8.2cm, GCT 263ms, Avg Power 331W, Max Power 470W, 31°C)** |
 | 2026-08-11 | Easy | 7.01 | ~41:50 | **5'58"** | Vomero Plus | 🔥 **7km 이지 조깅 완수 (Avg HR 142 / Max 158, Cadence 174, Stride 0.96m, VR 8.4%, GCT 262ms, Avg Power 331W, Max Power 487W, Max Pace 5'06", Nike Vomero Plus)** |
-| 2026-08-13 | Tempo | 6.00 | 33:39 | **5'36"** | Endorphin Speed 5 | 🔥 **6km 템포런 완수 (메인 템포 3km @ 5'04"/km - 1k 4'58", 2k 5'04", 3k 5'10" / Avg HR 158 / Max 183, Cadence 173, Stride 1.01m, VR 8.1%, VO 8.2cm, GCT 257ms, Avg Power 345W, Max Power 440W, Aerobic TE 4.1 VO2 Max)** |
+| 2026-08-13 | Tempo | 6.00 | 33:39 | **5'36"** | Endorphin Speed 5 | 🔥 **6km 템포런 완수 (메인 템포 3km @ 5'04"/km - 1k 4'58", 2k 5'04", 3k 5'10" / Avg HR 158 / Max 183, Cadence 173, Stride 1.01m, VR 8.1%, VO 8.2cm, GCT 257ms, Avg Power 345W, Max Power 440W, Aerobic TE 4.1 VO2 Max / ⚠️ 좌측 어깨 상체 긴장 및 양측(특히 좌측) 장경인대 묵직함·압통 관찰 - 중둔근 케어 및 주말 부하 조절)** |
 
 ## 3. MONTHLY MILEAGE ARCHIVE
 | 연월 | 총 누적 거리 (km) | 평균 페이스 | 비고 및 주요 이벤트 |
