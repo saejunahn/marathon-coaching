@@ -1,4 +1,4 @@
-# Public Web App Only - Exclude Internal / Personal SSOT Docs from Public Git
+# Public Web App Only - Exclude Internal / Personal SSOT Docs & Draft Assets from Public Git
 .env
 .agents/
 .venv/
@@ -10,3 +10,15 @@ garmin_tokens/
 agent.md
 running_ssot.md
 running_playlist.md
+
+# Design Exploration & Sample Assets (Kept locally / Google Drive only)
+color_palettes.html
+font_candidates.html
+nike_editorial_sample.html
+nike_photo_editorial.html
+runner_hero.jpg
+sample_report.html
+track_11_artwork.html
+track_11_original.png
+track_number_assets.html
+track_series_august_2026.html
