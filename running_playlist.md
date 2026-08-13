@@ -8,10 +8,10 @@
 | :-: | :--- | :--- | :-: | :-: | :--- |
 | 1 | **Levitating** | Dua Lipa | 3:24 | 103 / 173 | ✅ Warmup / Rhythmic Start |
 | 2 | **Hype Boy** | NewJeans | 3:00 | 170 | ✅ High Cadence Rhythm |
-| 3 | **(It Goes Like) Nanana (Edit)** | Peggy Gou | 3:52 | 130 / 173 | ✅ Groove Build-up |
-| 4 | **Blinding Lights** | The Weeknd | 3:22 | 171 | ✅ Main Tempo 1km Ignition |
-| 5 | **Hey Ya!** | OutKast | 3:56 | 160 / 175 | 🔥 **BEST TRACK (Peak Power & Energy Boost)** |
-| 6 | **ANTIFRAGILE** | LE SSERAFIM | 3:05 | 170 | ✅ Rhythm & Cadence Lock |
+| 3 | **(It Goes Like) Nanana (Edit)** | Peggy Gou | 3:52 | 130 / 173 | ✅ Warmup End (Total 10:16 - Transition) |
+| 4 | **Hey Ya!** | OutKast | 3:56 | 160 / 175 | 🔥 **BEST TRACK (Main Tempo 1km Ignition)** |
+| 5 | **Blinding Lights** | The Weeknd | 3:22 | 171 | ✅ Main Tempo 2km Rhythm |
+| 6 | **ANTIFRAGILE** | LE SSERAFIM | 3:05 | 170 | ✅ Main Tempo 3km Peak |
 | 7 | **Uptown Funk (feat. Bruno Mars)** | Mark Ronson | 4:30 | 115 / 173 | 🔄 *(Replaced Runaway Baby)* Funk/Groove Fit |
 | 8 | **Save Your Tears** | The Weeknd | 3:36 | 118 / 176 | ✅ Main Tempo Endurance |
 | 9 | **Get Lucky (feat. Pharrell Williams)** | Daft Punk | 4:09 | 116 / 174 | ✅ Steady Cadence Flow |
