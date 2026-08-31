@@ -32,22 +32,24 @@
       align-items: center;
     }
 
-    /* Top Navigation in the margin space ABOVE the calendar card */
+    /* Top Navigation in the margin space ABOVE the calendar card (Material/Touch UX Optimized) */
     .top-nav-bar {
       width: 600px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       padding: 0 2px;
     }
 
     .nav-bracket-btn {
       background: rgba(250, 248, 245, 0.08);
-      border: 1px solid rgba(220, 213, 199, 0.2);
-      border-radius: 4px;
-      width: 32px;
-      height: 32px;
+      border: 1.5px solid rgba(220, 213, 199, 0.22);
+      border-radius: 8px;
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      min-height: 48px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -56,33 +58,43 @@
       transition: all 0.15s ease-in-out;
       outline: none;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
 
     .nav-bracket-btn:hover:not(.disabled) {
-      background: rgba(250, 248, 245, 0.2);
-      border-color: rgba(220, 213, 199, 0.45);
-      transform: scale(1.05);
+      background: rgba(250, 248, 245, 0.22);
+      border-color: rgba(220, 213, 199, 0.55);
+      color: #FFFFFF;
+      transform: scale(1.06);
+    }
+
+    .nav-bracket-btn:active:not(.disabled) {
+      transform: scale(0.92);
+      background: rgba(250, 248, 245, 0.3);
     }
 
     .nav-bracket-btn.disabled {
-      opacity: 0.18;
+      opacity: 0.15;
       cursor: not-allowed;
       pointer-events: none;
       background: transparent;
-      border-color: rgba(220, 213, 199, 0.08);
+      border-color: rgba(220, 213, 199, 0.06);
     }
 
     .top-nav-status {
       font-family: 'Outfit', sans-serif;
-      font-size: 11px;
+      font-size: 15px;
       font-weight: 600;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(250, 248, 245, 0.5);
+      color: rgba(250, 248, 245, 0.55);
+      user-select: none;
     }
 
     .top-nav-status span {
       color: #FAF8F5;
+      font-weight: 700;
     }
 
     /* Absolute Original Master Poster Frame (Exact 600px x 800px) */
@@ -386,16 +398,16 @@
 <body>
 
   <div class="calendar-app-container">
-    <!-- Top Navigation Bar in Outside Upper Margin Space -->
+    <!-- Top Navigation Bar in Outside Upper Margin Space (48px Touch Targets) -->
     <div class="top-nav-bar">
       <button id="prev-month-btn" class="nav-bracket-btn" title="Previous Month" aria-label="Previous Month">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </button>
       <div class="top-nav-status">
         MONTH &bull; <span id="top-nav-active-label">SEPTEMBER 2026</span>
       </div>
       <button id="next-month-btn" class="nav-bracket-btn disabled" title="Next Month" aria-label="Next Month">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </button>
     </div>
 
