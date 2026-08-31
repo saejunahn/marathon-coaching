@@ -201,20 +201,13 @@
       text-transform: uppercase;
     }
 
-    /* Grid Days Layout */
+    /* Unified 6-Row Grid Days Layout (Exact Row Height for All Months) */
     .days-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(6, 1fr);
       flex: 1;
       min-height: 0;
-    }
-
-    .days-grid-6rows {
-      grid-template-rows: repeat(6, 1fr);
-    }
-
-    .days-grid-5rows {
-      grid-template-rows: repeat(5, 1fr);
     }
 
     .day-cell {
@@ -434,7 +427,8 @@
             <div class="weekday-header">SUN</div>
           </div>
 
-          <div class="days-grid days-grid-5rows">
+          <div class="days-grid">
+            <!-- Row 1: Aug 31 ~ Sep 06 -->
             <div class="day-cell other-month">
               <div class="date-header"><div class="date-num">31</div></div>
             </div>
@@ -475,6 +469,8 @@
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">06</div></div></div>
+
+            <!-- Row 2: Sep 07 ~ Sep 13 -->
             <div class="day-cell"><div class="date-header"><div class="date-num">07</div></div></div>
             <div class="day-cell">
               <div class="date-header"><div class="date-num">08</div></div>
@@ -502,6 +498,8 @@
             <div class="day-cell"><div class="date-header"><div class="date-num">11</div></div></div>
             <div class="day-cell"><div class="date-header"><div class="date-num">12</div></div></div>
             <div class="day-cell"><div class="date-header"><div class="date-num">13</div></div></div>
+
+            <!-- Row 3: Sep 14 ~ Sep 20 -->
             <div class="day-cell"><div class="date-header"><div class="date-num">14</div></div></div>
             <div class="day-cell">
               <div class="date-header"><div class="date-num">15</div></div>
@@ -540,6 +538,8 @@
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">20</div></div></div>
+
+            <!-- Row 4: Sep 21 ~ Sep 27 -->
             <div class="day-cell"><div class="date-header"><div class="date-num">21</div></div></div>
             <div class="day-cell">
               <div class="date-header"><div class="date-num">22</div></div>
@@ -578,6 +578,8 @@
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">27</div></div></div>
+
+            <!-- Row 5: Sep 28 ~ Oct 04 -->
             <div class="day-cell"><div class="date-header"><div class="date-num">28</div></div></div>
             <div class="day-cell">
               <div class="date-header"><div class="date-num">29</div></div>
@@ -593,6 +595,15 @@
             <div class="day-cell other-month"><div class="date-header"><div class="date-num">02</div></div></div>
             <div class="day-cell other-month"><div class="date-header"><div class="date-num">03</div></div></div>
             <div class="day-cell other-month"><div class="date-header"><div class="date-num">04</div></div></div>
+
+            <!-- Row 6: Empty Bottom Row (Unified Height with August) -->
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
           </div>
         </div>
 
@@ -610,7 +621,8 @@
             <div class="weekday-header">SUN</div>
           </div>
 
-          <div class="days-grid days-grid-6rows">
+          <div class="days-grid">
+            <!-- Row 1: Aug 01 ~ Aug 02 -->
             <div class="day-cell empty"></div>
             <div class="day-cell empty"></div>
             <div class="day-cell empty"></div>
@@ -618,6 +630,8 @@
             <div class="day-cell empty"></div>
             <div class="day-cell"><div class="date-header"><div class="date-num">01</div></div></div>
             <div class="day-cell"><div class="date-header"><div class="date-num">02</div></div></div>
+
+            <!-- Row 2: Aug 03 ~ Aug 09 -->
             <div class="day-cell"><div class="date-header"><div class="date-num">03</div></div></div>
             <div class="day-cell"><div class="date-header"><div class="date-num">04</div></div></div>
             <div class="day-cell"><div class="date-header"><div class="date-num">05</div></div></div>
@@ -633,6 +647,8 @@
                 <div class="workout-subtext">이지 조깅</div>
               </div>
             </div>
+
+            <!-- Row 3: Aug 10 ~ Aug 16 -->
             <div class="day-cell"><div class="date-header"><div class="date-num">10</div></div></div>
             <div class="day-cell">
               <div class="date-header"><div class="date-num">11</div><div class="completed-dot"></div></div>
@@ -671,6 +687,8 @@
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">16</div></div></div>
+
+            <!-- Row 4: Aug 17 ~ Aug 23 -->
             <div class="day-cell"><div class="date-header"><div class="date-num">17</div></div></div>
             <div class="day-cell">
               <div class="date-header"><div class="date-num">18</div><div class="completed-dot"></div></div>
@@ -709,6 +727,8 @@
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">23</div></div></div>
+
+            <!-- Row 5: Aug 24 ~ Aug 30 -->
             <div class="day-cell"><div class="date-header"><div class="date-num">24</div></div></div>
             <div class="day-cell">
               <div class="date-header"><div class="date-num">25</div><div class="completed-dot"></div></div>
@@ -747,6 +767,8 @@
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">30</div></div></div>
+
+            <!-- Row 6: Aug 31 -->
             <div class="day-cell">
               <div class="date-header"><div class="date-num">31</div></div>
               <div class="workout-tag">
