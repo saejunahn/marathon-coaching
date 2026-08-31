@@ -9,23 +9,90 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       background-color: #121316;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      font-family: 'Outfit', 'Pretendard', -apple-system, sans-serif;
-      padding: 20px;
+      font-family: 'Outfit', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      padding: 24px 20px;
     }
+
+    .calendar-app-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Top Navigation in the margin space ABOVE the calendar card */
+    .top-nav-bar {
+      width: 600px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 0 2px;
+    }
+
+    .nav-bracket-btn {
+      background: rgba(250, 248, 245, 0.08);
+      border: 1px solid rgba(220, 213, 199, 0.2);
+      border-radius: 4px;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #FAF8F5;
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+      outline: none;
+      padding: 0;
+    }
+
+    .nav-bracket-btn:hover:not(.disabled) {
+      background: rgba(250, 248, 245, 0.2);
+      border-color: rgba(220, 213, 199, 0.45);
+      transform: scale(1.05);
+    }
+
+    .nav-bracket-btn.disabled {
+      opacity: 0.18;
+      cursor: not-allowed;
+      pointer-events: none;
+      background: transparent;
+      border-color: rgba(220, 213, 199, 0.08);
+    }
+
+    .top-nav-status {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(250, 248, 245, 0.5);
+    }
+
+    .top-nav-status span {
+      color: #FAF8F5;
+    }
+
+    /* Absolute Original Master Poster Frame (Exact 600px x 800px) */
     .calendar-card {
       width: 600px;
       height: 800px;
       background-color: #FAF8F5;
       border-radius: 6px;
       box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-      padding: 38px 36px 22px 36px;
+      padding: 42px 36px 24px 36px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -34,60 +101,41 @@
       overflow: hidden;
       flex-shrink: 0;
     }
+
+    /* Header Section (Exact Original Tracksmith Layout) */
     .header {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       flex-shrink: 0;
+      width: 100%;
     }
-    .header-left { display: flex; flex-direction: column; }
-    .month-nav-row { display: flex; align-items: center; gap: 10px; }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+    }
+
     .main-title {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 700;
       letter-spacing: -0.3px;
       color: #111317;
       line-height: 1.05;
       white-space: nowrap;
-      min-width: 260px;
     }
+
     .sub-title {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 500;
       color: #4a4e57;
       margin-top: 3px;
     }
-    .nav-chevron-btn {
-      background: #f3ede2;
-      border: 1px solid #dcd5c7;
-      border-radius: 4px;
-      width: 28px;
-      height: 28px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #111317;
-      cursor: pointer;
-      transition: all 0.15s ease-in-out;
-      outline: none;
-      padding: 0;
-    }
-    .nav-chevron-btn:hover:not(.disabled) {
-      background: #111317;
-      color: #FAF8F5;
-      border-color: #111317;
-      transform: scale(1.05);
-    }
-    .nav-chevron-btn.disabled {
-      opacity: 0.22;
-      cursor: not-allowed;
-      pointer-events: none;
-      border-color: #e5dfd5;
-      background: transparent;
-    }
+
+    /* Header Stats Chip (Right-Aligned) */
     .stats-chip {
       border: 1px solid #dcd5c7;
       border-radius: 2px;
@@ -99,16 +147,24 @@
       background-color: #f4efe6;
       text-transform: uppercase;
       white-space: nowrap;
+      margin-left: auto;
     }
-    .stats-chip span { font-weight: 700; color: #111317; }
+
+    .stats-chip span {
+      font-weight: 700;
+      color: #111317;
+    }
+
+    /* Calendar Outer Container */
     .calendar-container {
       display: flex;
       flex-direction: column;
       flex: 1;
       min-height: 0;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       position: relative;
     }
+
     .calendar-view {
       display: none;
       opacity: 0;
@@ -117,9 +173,14 @@
       min-height: 0;
       border-top: 1px solid #dcd5c7;
       border-left: 1px solid #dcd5c7;
-      transition: opacity 0.18s ease-in-out;
+      transition: opacity 0.15s ease-in-out;
     }
-    .calendar-view.active { display: flex; opacity: 1; }
+
+    .calendar-view.active {
+      display: flex;
+      opacity: 1;
+    }
+
     .weekday-row {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
@@ -127,6 +188,7 @@
       border-bottom: 1px solid #dcd5c7;
       flex-shrink: 0;
     }
+
     .weekday-header {
       text-align: center;
       font-family: 'Outfit', sans-serif;
@@ -138,264 +200,598 @@
       border-right: 1px solid #dcd5c7;
       text-transform: uppercase;
     }
-    .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); flex: 1; min-height: 0; }
-    .days-grid-6rows { grid-template-rows: repeat(6, 1fr); }
-    .days-grid-5rows { grid-template-rows: repeat(5, 1fr); }
+
+    /* Grid Days Layout */
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      flex: 1;
+      min-height: 0;
+    }
+
+    .days-grid-6rows {
+      grid-template-rows: repeat(6, 1fr);
+    }
+
+    .days-grid-5rows {
+      grid-template-rows: repeat(5, 1fr);
+    }
+
     .day-cell {
       border-right: 1px solid #dcd5c7;
       border-bottom: 1px solid #dcd5c7;
       padding: 5px 6px;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
       background-color: transparent;
       overflow: hidden;
+      position: relative;
     }
-    .day-cell.empty { background-color: rgba(235, 228, 218, 0.4); }
-    .day-cell.other-month { background-color: rgba(240, 235, 226, 0.5); }
-    .day-cell.other-month .date-num { color: #b0a99c; }
-    .date-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; line-height: 1; }
-    .date-num { font-family: 'Playfair Display', Georgia, serif; font-size: 15.5px; font-weight: 700; color: #0F1115; }
+
+    .day-cell.empty {
+      background-color: rgba(235, 228, 218, 0.4);
+    }
+
+    .day-cell.other-month {
+      background-color: rgba(240, 235, 226, 0.5);
+    }
+
+    .day-cell.other-month .date-num {
+      color: #b0a99c;
+    }
+
+    /* Serif Date Number & Header (Exact Original) */
+    .date-header {
+      display: flex;
+      display: -webkit-flex;
+      justify-content: space-between;
+      -webkit-justify-content: space-between;
+      align-items: center;
+      -webkit-align-items: center;
+      margin-bottom: 8.5px;
+      width: 100%;
+    }
+
+    .date-num {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #0f1115;
+      line-height: 1;
+      letter-spacing: -0.3px;
+    }
+
+    /* Completed Stamping Red Dot */
     .completed-dot {
-      width: 7.5px; height: 7.5px;
-      background-color: #E03E26;
-      border-radius: 50%;
       display: inline-block;
-      box-shadow: 0 0 0 1.5px #FAF8F5, 0 1px 3px rgba(224, 62, 38, 0.4);
+      width: 6px;
+      height: 6px;
+      background-color: #B83B3B;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      flex-shrink: 0;
+      -webkit-flex-shrink: 0;
+    }
+
+    /* Workout Tag */
+    .workout-tag {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    /* Fine Ink Rule Accent (Exact Original) */
+    .badge-bar {
+      height: 2.5px;
+      border-radius: 1px;
+      width: 100%;
+      margin-bottom: 3px;
+    }
+
+    .badge-bar-segmented {
+      height: 2.5px;
+      border-radius: 1px;
+      width: 100%;
+      margin-bottom: 3px;
+      display: flex;
+      gap: 1.5px;
+      overflow: hidden;
+    }
+
+    .bar-segment {
+      height: 100%;
+    }
+
+    /* Original Palette */
+    .bar-recovery { background-color: #3B7EA1; }  /* Recovery (5:50 ~ 6:20) - Ocean Blue */
+    .bar-steady   { background-color: #1A5E4F; }  /* Steady (5:25 ~ 5:45) - Forest Emerald */
+    .bar-tempo    { background-color: #E06A26; }  /* Tempo (4:45 ~ 5:10) - Warm Tangerine */
+    .bar-interval { background-color: #B83B3B; }  /* Interval (4:20 ~ 4:40) - Classic Burgundy */
+    .bar-strides  { background-color: #C59B27; }  /* Strides (3:50 ~ 4:10) - Sand Gold */
+
+    /* EXACT ORIGINAL WORKOUT TYPOGRAPHY (Pretendard Sans-Serif) */
+    .workout-dist {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.05;
+      color: #111317;
+      margin-bottom: -1px;
+    }
+
+    .workout-name {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+      line-height: 1.1;
+      color: #111317;
+      word-break: keep-all;
+      margin-bottom: 1px;
+    }
+
+    .workout-subtext {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      line-height: 1.2;
+      color: #5c6270;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Pace Chart Footer Section (Exact Original) */
+    .pace-chart-section {
+      border-top: 1px solid #dcd5c7;
+      padding-top: 10px;
       flex-shrink: 0;
     }
-    .workout-tag { display: flex; flex-direction: column; gap: 1px; }
-    .badge-bar { height: 2.2px; width: 100%; border-radius: 1px; margin-bottom: 2px; }
-    .badge-bar-segmented { display: flex; width: 100%; height: 2.2px; border-radius: 1px; overflow: hidden; margin-bottom: 2px; gap: 1px; }
-    .bar-segment { height: 100%; }
-    .bar-recovery { background-color: #3B7EA1; }
-    .bar-steady   { background-color: #1A5E4F; }
-    .bar-tempo    { background-color: #E06A26; }
-    .bar-interval { background-color: #D9381E; }
-    .bar-strides  { background-color: #6C3082; }
-    .workout-dist { font-family: 'Playfair Display', Georgia, serif; font-size: 13.5px; font-weight: 700; color: #111317; line-height: 1.1; letter-spacing: -0.2px; }
-    .workout-name { font-size: 9.5px; font-weight: 600; color: #35383e; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.2px; }
-    .workout-subtext { font-size: 8.5px; font-weight: 500; color: #60646c; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .event-tag { margin-top: 3px; }
-    .event-pill {
-      font-size: 8.5px; font-weight: 600; color: #5c5549; background-color: #ece5d8;
-      border: 1px solid #dad2c3; border-radius: 3px; padding: 2.5px 4px; text-align: center;
-      line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+
+    .pace-chart-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #111317;
+      margin-bottom: 6px;
     }
-    .event-pill.travel-pill { background-color: #e5eff7; color: #234d6d; border-color: #c2d6e7; }
-    .pace-chart-section { background-color: #f3ede2; border: 1px solid #dcd5c7; border-radius: 3px; padding: 9px 12px; flex-shrink: 0; }
-    .pace-chart-title { font-family: 'Playfair Display', Georgia, serif; font-size: 11.5px; font-weight: 700; color: #111317; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .pace-chart-grid { display: flex; justify-content: space-between; align-items: center; }
-    .pace-legend-item { display: flex; align-items: center; gap: 5px; }
-    .legend-box { width: 7px; height: 7px; border-radius: 1px; flex-shrink: 0; }
-    .legend-text { font-size: 9.5px; font-weight: 500; color: #4a4e57; }
-    .legend-text span { font-weight: 600; color: #111317; }
+
+    .pace-chart-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px 12px;
+    }
+
+    .pace-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-box {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .legend-text {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: #4a4e57;
+      white-space: nowrap;
+    }
+
+    .legend-text span {
+      font-weight: 600;
+      color: #111317;
+    }
   </style>
 </head>
 <body>
 
-  <div class="calendar-card">
-    <div class="header">
-      <div class="header-left">
-        <div class="month-nav-row">
-          <button id="prev-month-btn" class="nav-chevron-btn" aria-label="Previous Month">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          </button>
+  <div class="calendar-app-container">
+    <!-- Top Navigation Bar in Outside Upper Margin Space -->
+    <div class="top-nav-bar">
+      <button id="prev-month-btn" class="nav-bracket-btn" title="Previous Month" aria-label="Previous Month">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <div class="top-nav-status">
+        MONTH &bull; <span id="top-nav-active-label">SEPTEMBER 2026</span>
+      </div>
+      <button id="next-month-btn" class="nav-bracket-btn disabled" title="Next Month" aria-label="Next Month">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+
+    <!-- Master Poster Calendar Card (Exact 600px x 800px) -->
+    <div class="calendar-card">
+      <!-- Header Section -->
+      <div class="header">
+        <div class="header-left">
           <div class="main-title" id="month-title-display">September 2026</div>
-          <button id="next-month-btn" class="nav-chevron-btn disabled" aria-label="Next Month">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </button>
+          <div class="sub-title" id="month-subtitle-display">10K Speed & Steady Buildup</div>
         </div>
-        <div class="sub-title" id="month-subtitle-display">10K Speed & Steady Buildup</div>
+        <div class="stats-chip" id="stats-chip-display">TARGET: <span>105.0 KM</span> | <span>12 SESSIONS</span></div>
       </div>
-      <div class="stats-chip" id="stats-chip-display">TARGET: <span>105.0 KM</span> | <span>12 SESSIONS</span></div>
-    </div>
 
-    <div class="calendar-container">
-      <div class="calendar-view active" id="view-september-2026">
-        <div class="weekday-row">
-          <div class="weekday-header">MON</div><div class="weekday-header">TUE</div><div class="weekday-header">WED</div><div class="weekday-header">THU</div><div class="weekday-header">FRI</div><div class="weekday-header">SAT</div><div class="weekday-header">SUN</div>
+      <!-- Calendar Container -->
+      <div class="calendar-container">
+
+        <!-- ========================================== -->
+        <!-- VIEW 1: SEPTEMBER 2026 (ACTIVE DEFAULT)    -->
+        <!-- ========================================== -->
+        <div class="calendar-view active" id="view-september-2026">
+          <div class="weekday-row">
+            <div class="weekday-header">MON</div>
+            <div class="weekday-header">TUE</div>
+            <div class="weekday-header">WED</div>
+            <div class="weekday-header">THU</div>
+            <div class="weekday-header">FRI</div>
+            <div class="weekday-header">SAT</div>
+            <div class="weekday-header">SUN</div>
+          </div>
+
+          <div class="days-grid days-grid-5rows">
+            <div class="day-cell other-month">
+              <div class="date-header"><div class="date-num">31</div></div>
+            </div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">01</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar bar-recovery"></div>
+                <div class="workout-dist">8km</div>
+                <div class="workout-name">Recovery</div>
+                <div class="workout-subtext">이지 조깅</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">02</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">03</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                  <div class="bar-segment bar-tempo" style="flex: 4;"></div>
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                </div>
+                <div class="workout-dist">7km</div>
+                <div class="workout-name">Tempo</div>
+                <div class="workout-subtext">1.5k + 4k + 1.5k</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">04</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">05</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 5;"></div>
+                  <div class="bar-segment bar-steady" style="flex: 6;"></div>
+                </div>
+                <div class="workout-dist">11km</div>
+                <div class="workout-name">Steady</div>
+                <div class="workout-subtext">5k + 6k 빌드업</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">06</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">07</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">08</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar bar-recovery"></div>
+                <div class="workout-dist">8km</div>
+                <div class="workout-name">Recovery</div>
+                <div class="workout-subtext">저심박 조깅</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">09</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">10</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                  <div class="bar-segment bar-tempo" style="flex: 5;"></div>
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                </div>
+                <div class="workout-dist">8km</div>
+                <div class="workout-name">Tempo</div>
+                <div class="workout-subtext">1.5k + 5k + 1.5k</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">11</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">12</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">13</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">14</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">15</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar bar-recovery"></div>
+                <div class="workout-dist">8km</div>
+                <div class="workout-name">Recovery</div>
+                <div class="workout-subtext">이지 조깅</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">16</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">17</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                  <div class="bar-segment bar-tempo" style="flex: 5;"></div>
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                </div>
+                <div class="workout-dist">8km</div>
+                <div class="workout-name">Tempo</div>
+                <div class="workout-subtext">1.5k + 5k + 1.5k</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">18</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">19</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 6;"></div>
+                  <div class="bar-segment bar-steady" style="flex: 6;"></div>
+                </div>
+                <div class="workout-dist">12km</div>
+                <div class="workout-name">Steady</div>
+                <div class="workout-subtext">6k + 6k 빌드업</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">20</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">21</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">22</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar bar-recovery"></div>
+                <div class="workout-dist">8km</div>
+                <div class="workout-name">Recovery</div>
+                <div class="workout-subtext">저심박 조깅</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">23</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">24</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                  <div class="bar-segment bar-tempo" style="flex: 4;"></div>
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                </div>
+                <div class="workout-dist">7km</div>
+                <div class="workout-name">Tempo</div>
+                <div class="workout-subtext">1.5k + 4k + 1.5k</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">25</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">26</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 6;"></div>
+                  <div class="bar-segment bar-steady" style="flex: 6;"></div>
+                </div>
+                <div class="workout-dist">12km</div>
+                <div class="workout-name">Steady</div>
+                <div class="workout-subtext">6k + 6k 빌드업</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">27</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">28</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">29</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar bar-recovery"></div>
+                <div class="workout-dist">8km</div>
+                <div class="workout-name">Recovery</div>
+                <div class="workout-subtext">이지 조깅</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">30</div></div></div>
+            <div class="day-cell other-month"><div class="date-header"><div class="date-num">01</div></div></div>
+            <div class="day-cell other-month"><div class="date-header"><div class="date-num">02</div></div></div>
+            <div class="day-cell other-month"><div class="date-header"><div class="date-num">03</div></div></div>
+            <div class="day-cell other-month"><div class="date-header"><div class="date-num">04</div></div></div>
+          </div>
         </div>
-        <div class="days-grid days-grid-5rows">
-          <div class="day-cell other-month"><div class="date-header"><div class="date-num">31</div></div></div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">01</div></div><div class="workout-tag"><div class="badge-bar bar-recovery"></div><div class="workout-dist">8km</div><div class="workout-name">Recovery</div><div class="workout-subtext">이지 조깅</div></div></div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">02</div></div></div>
-          <div class="day-cell">
-            <div class="date-header"><div class="date-num">03</div></div>
-            <div class="workout-tag">
-              <div class="badge-bar-segmented">
-                <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
-                <div class="bar-segment bar-tempo" style="flex: 4;"></div>
-                <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
-              </div>
-              <div class="workout-dist">7km</div>
-              <div class="workout-name">Tempo</div>
-              <div class="workout-subtext">1.5k + 4k + 1.5k</div>
-            </div>
-          </div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">04</div></div></div>
-          <div class="day-cell">
-            <div class="date-header"><div class="date-num">05</div></div>
-            <div class="workout-tag">
-              <div class="badge-bar-segmented">
-                <div class="bar-segment bar-recovery" style="flex: 5;"></div>
-                <div class="bar-segment bar-steady" style="flex: 6;"></div>
-              </div>
-              <div class="workout-dist">11km</div>
-              <div class="workout-name">Steady</div>
-              <div class="workout-subtext">5k + 6k 빌드업</div>
-            </div>
-          </div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">06</div></div></div>
 
-          <!-- Row 2: Sep 07 ~ Sep 13 -->
-          <div class="day-cell"><div class="date-header"><div class="date-num">07</div></div></div>
-          <div class="day-cell">
-            <div class="date-header"><div class="date-num">08</div></div>
-            <div class="workout-tag">
-              <div class="badge-bar bar-recovery"></div>
-              <div class="workout-dist">8km</div>
-              <div class="workout-name">Recovery</div>
-              <div class="workout-subtext">저심박 조깅</div>
-            </div>
+        <!-- ========================================== -->
+        <!-- VIEW 2: AUGUST 2026 (ORIGINAL BLUEPRINT)   -->
+        <!-- ========================================== -->
+        <div class="calendar-view" id="view-august-2026">
+          <div class="weekday-row">
+            <div class="weekday-header">MON</div>
+            <div class="weekday-header">TUE</div>
+            <div class="weekday-header">WED</div>
+            <div class="weekday-header">THU</div>
+            <div class="weekday-header">FRI</div>
+            <div class="weekday-header">SAT</div>
+            <div class="weekday-header">SUN</div>
           </div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">09</div></div></div>
-          <div class="day-cell">
-            <div class="date-header"><div class="date-num">10</div></div>
-            <div class="workout-tag">
-              <div class="badge-bar-segmented">
-                <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
-                <div class="bar-segment bar-tempo" style="flex: 5;"></div>
-                <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
-              </div>
-              <div class="workout-dist">8km</div>
-              <div class="workout-name">Tempo</div>
-              <div class="workout-subtext">1.5k + 5k + 1.5k</div>
-            </div>
-          </div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">11</div></div></div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">12</div></div></div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">13</div></div></div>
 
-          <!-- Row 3: Sep 14 ~ Sep 20 -->
-          <div class="day-cell"><div class="date-header"><div class="date-num">14</div></div></div>
-          <div class="day-cell">
-            <div class="date-header"><div class="date-num">15</div></div>
-            <div class="workout-tag">
-              <div class="badge-bar bar-recovery"></div>
-              <div class="workout-dist">8km</div>
-              <div class="workout-name">Recovery</div>
-              <div class="workout-subtext">이지 조깅</div>
-            </div>
-          </div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">16</div></div></div>
-          <div class="day-cell">
-            <div class="date-header"><div class="date-num">17</div></div>
-            <div class="workout-tag">
-              <div class="badge-bar-segmented">
-                <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
-                <div class="bar-segment bar-tempo" style="flex: 5;"></div>
-                <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+          <div class="days-grid days-grid-6rows">
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">01</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">02</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">03</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">04</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">05</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">06</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">07</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">08</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">09</div><div class="completed-dot"></div></div>
+              <div class="workout-tag">
+                <div class="badge-bar bar-recovery"></div>
+                <div class="workout-dist">5km</div>
+                <div class="workout-name">Recovery</div>
+                <div class="workout-subtext">이지 조깅</div>
               </div>
-              <div class="workout-dist">8km</div>
-              <div class="workout-name">Tempo</div>
-              <div class="workout-subtext">1.5k + 5k + 1.5k</div>
             </div>
-          </div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">18</div></div></div>
-          <div class="day-cell">
-            <div class="date-header"><div class="date-num">19</div></div>
-            <div class="workout-tag">
-              <div class="badge-bar-segmented">
-                <div class="bar-segment bar-recovery" style="flex: 6;"></div>
-                <div class="bar-segment bar-steady" style="flex: 6;"></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">10</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">11</div><div class="completed-dot"></div></div>
+              <div class="workout-tag">
+                <div class="badge-bar bar-recovery"></div>
+                <div class="workout-dist">7km</div>
+                <div class="workout-name">Recovery</div>
+                <div class="workout-subtext">이지 조깅</div>
               </div>
-              <div class="workout-dist">12km</div>
-              <div class="workout-name">Steady</div>
-              <div class="workout-subtext">6k + 6k 빌드업</div>
             </div>
-          </div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">20</div></div></div>
-
-          <!-- Row 4: Sep 21 ~ Sep 27 -->
-          <div class="day-cell"><div class="date-header"><div class="date-num">21</div></div></div>
-          <div class="day-cell">
-            <div class="date-header"><div class="date-num">22</div></div>
-            <div class="workout-tag">
-              <div class="badge-bar bar-recovery"></div>
-              <div class="workout-dist">8km</div>
-              <div class="workout-name">Recovery</div>
-              <div class="workout-subtext">저심박 조깅</div>
-            </div>
-          </div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">23</div></div></div>
-          <div class="day-cell">
-            <div class="date-header"><div class="date-num">24</div></div>
-            <div class="workout-tag">
-              <div class="badge-bar-segmented">
-                <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
-                <div class="bar-segment bar-tempo" style="flex: 4;"></div>
-                <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">12</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">13</div><div class="completed-dot"></div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                  <div class="bar-segment bar-tempo" style="flex: 3;"></div>
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                </div>
+                <div class="workout-dist">6km</div>
+                <div class="workout-name">Tempo</div>
+                <div class="workout-subtext">1.5k + 3k + 1.5k</div>
               </div>
-              <div class="workout-dist">7km</div>
-              <div class="workout-name">Tempo</div>
-              <div class="workout-subtext">1.5k + 4k + 1.5k</div>
             </div>
-          </div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">25</div></div></div>
-          <div class="day-cell">
-            <div class="date-header"><div class="date-num">26</div></div>
-            <div class="workout-tag">
-              <div class="badge-bar-segmented">
-                <div class="bar-segment bar-recovery" style="flex: 6;"></div>
-                <div class="bar-segment bar-steady" style="flex: 6;"></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">14</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">15</div><div class="completed-dot"></div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 5;"></div>
+                  <div class="bar-segment bar-steady" style="flex: 5;"></div>
+                </div>
+                <div class="workout-dist">10km</div>
+                <div class="workout-name">Steady</div>
+                <div class="workout-subtext">5k + 5k 빌드업</div>
               </div>
-              <div class="workout-dist">12km</div>
-              <div class="workout-name">Steady</div>
-              <div class="workout-subtext">6k + 6k 빌드업</div>
             </div>
-          </div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">27</div></div></div>
-
-          <!-- Row 5: Sep 28 ~ Oct 04 -->
-          <div class="day-cell"><div class="date-header"><div class="date-num">28</div></div></div>
-          <div class="day-cell">
-            <div class="date-header"><div class="date-num">29</div></div>
-            <div class="workout-tag">
-              <div class="badge-bar bar-recovery"></div>
-              <div class="workout-dist">8km</div>
-              <div class="workout-name">Recovery</div>
-              <div class="workout-subtext">이지 조깅</div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">16</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">17</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">18</div><div class="completed-dot"></div></div>
+              <div class="workout-tag">
+                <div class="badge-bar bar-recovery"></div>
+                <div class="workout-dist">8km</div>
+                <div class="workout-name">Recovery</div>
+                <div class="workout-subtext">이지 조깅</div>
+              </div>
             </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">19</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">20</div><div class="completed-dot"></div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                  <div class="bar-segment bar-tempo" style="flex: 4;"></div>
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                </div>
+                <div class="workout-dist">7km</div>
+                <div class="workout-name">Tempo</div>
+                <div class="workout-subtext">1.5k + 4k + 1.5k</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">21</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">22</div><div class="completed-dot"></div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 5;"></div>
+                  <div class="bar-segment bar-steady" style="flex: 6;"></div>
+                </div>
+                <div class="workout-dist">11km</div>
+                <div class="workout-name">Steady</div>
+                <div class="workout-subtext">5k + 6k 빌드업</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">23</div></div></div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">24</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">25</div><div class="completed-dot"></div></div>
+              <div class="workout-tag">
+                <div class="badge-bar bar-recovery"></div>
+                <div class="workout-dist">8km</div>
+                <div class="workout-name">Recovery</div>
+                <div class="workout-subtext">이지 조깅</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">26</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">27</div><div class="completed-dot"></div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                  <div class="bar-segment bar-tempo" style="flex: 4;"></div>
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                </div>
+                <div class="workout-dist">7km</div>
+                <div class="workout-name">Tempo</div>
+                <div class="workout-subtext">1.5k + 4k + 1.5k</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">28</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">29</div><div class="completed-dot"></div></div>
+              <div class="workout-tag">
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 6;"></div>
+                  <div class="bar-segment bar-steady" style="flex: 6;"></div>
+                </div>
+                <div class="workout-dist">12km</div>
+                <div class="workout-name">Steady</div>
+                <div class="workout-subtext">6k + 6k 빌드업</div>
+              </div>
+            </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">30</div></div></div>
+            <div class="day-cell">
+              <div class="date-header"><div class="date-num">31</div></div>
+              <div class="workout-tag">
+                <div class="badge-bar bar-recovery"></div>
+                <div class="workout-dist">7km</div>
+                <div class="workout-name">Recovery</div>
+                <div class="workout-subtext">이지 조깅</div>
+              </div>
+            </div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
           </div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">30</div></div></div>
-          <div class="day-cell other-month"><div class="date-header"><div class="date-num">01</div></div></div>
-          <div class="day-cell other-month"><div class="date-header"><div class="date-num">02</div></div></div>
-          <div class="day-cell other-month"><div class="date-header"><div class="date-num">03</div></div></div>
-          <div class="day-cell other-month"><div class="date-header"><div class="date-num">04</div></div></div>
         </div>
+
       </div>
-      <div class="calendar-view" id="view-august-2026">
-        <div class="weekday-row">
-          <div class="weekday-header">MON</div><div class="weekday-header">TUE</div><div class="weekday-header">WED</div><div class="weekday-header">THU</div><div class="weekday-header">FRI</div><div class="weekday-header">SAT</div><div class="weekday-header">SUN</div>
-        </div>
-        <div class="days-grid days-grid-6rows">
-          <div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell"><div class="date-header"><div class="date-num">01</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">02</div></div></div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">03</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">04</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">05</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">06</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">07</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">08</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">09</div><div class="completed-dot"></div></div><div class="workout-tag"><div class="badge-bar bar-recovery"></div><div class="workout-dist">5km</div><div class="workout-name">Recovery</div><div class="workout-subtext">이지 조깅</div></div></div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">10</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">11</div><div class="completed-dot"></div></div><div class="workout-tag"><div class="badge-bar bar-recovery"></div><div class="workout-dist">7km</div><div class="workout-name">Recovery</div><div class="workout-subtext">이지 조깅</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">12</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">13</div><div class="completed-dot"></div></div><div class="workout-tag"><div class="badge-bar-segmented"><div class="bar-segment bar-recovery" style="flex: 1.5;"></div><div class="bar-segment bar-tempo" style="flex: 3;"></div><div class="bar-segment bar-recovery" style="flex: 1.5;"></div></div><div class="workout-dist">6km</div><div class="workout-name">Tempo</div><div class="workout-subtext">1.5k + 3k + 1.5k</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">14</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">15</div><div class="completed-dot"></div></div><div class="workout-tag"><div class="badge-bar-segmented"><div class="bar-segment bar-recovery" style="flex: 5;"></div><div class="bar-segment bar-steady" style="flex: 5;"></div></div><div class="workout-dist">10km</div><div class="workout-name">Steady</div><div class="workout-subtext">5k + 5k 빌드업</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">16</div></div></div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">17</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">18</div><div class="completed-dot"></div></div><div class="workout-tag"><div class="badge-bar bar-recovery"></div><div class="workout-dist">8km</div><div class="workout-name">Recovery</div><div class="workout-subtext">이지 조깅</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">19</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">20</div><div class="completed-dot"></div></div><div class="workout-tag"><div class="badge-bar-segmented"><div class="bar-segment bar-recovery" style="flex: 1.5;"></div><div class="bar-segment bar-tempo" style="flex: 4;"></div><div class="bar-segment bar-recovery" style="flex: 1.5;"></div></div><div class="workout-dist">7km</div><div class="workout-name">Tempo</div><div class="workout-subtext">1.5k + 4k + 1.5k</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">21</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">22</div><div class="completed-dot"></div></div><div class="workout-tag"><div class="badge-bar-segmented"><div class="bar-segment bar-recovery" style="flex: 5;"></div><div class="bar-segment bar-steady" style="flex: 6;"></div></div><div class="workout-dist">11km</div><div class="workout-name">Steady</div><div class="workout-subtext">5k + 6k 빌드업</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">23</div></div></div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">24</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">25</div><div class="completed-dot"></div></div><div class="workout-tag"><div class="badge-bar bar-recovery"></div><div class="workout-dist">8km</div><div class="workout-name">Recovery</div><div class="workout-subtext">이지 조깅</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">26</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">27</div><div class="completed-dot"></div></div><div class="workout-tag"><div class="badge-bar-segmented"><div class="bar-segment bar-recovery" style="flex: 1.5;"></div><div class="bar-segment bar-tempo" style="flex: 4;"></div><div class="bar-segment bar-recovery" style="flex: 1.5;"></div></div><div class="workout-dist">7km</div><div class="workout-name">Tempo</div><div class="workout-subtext">1.5k + 4k + 1.5k</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">28</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">29</div><div class="completed-dot"></div></div><div class="workout-tag"><div class="badge-bar-segmented"><div class="bar-segment bar-recovery" style="flex: 6;"></div><div class="bar-segment bar-steady" style="flex: 6;"></div></div><div class="workout-dist">12km</div><div class="workout-name">Steady</div><div class="workout-subtext">6k + 6k 빌드업</div></div></div><div class="day-cell"><div class="date-header"><div class="date-num">30</div></div></div>
-          <div class="day-cell"><div class="date-header"><div class="date-num">31</div></div><div class="workout-tag"><div class="badge-bar bar-recovery"></div><div class="workout-dist">7km</div><div class="workout-name">Recovery</div><div class="workout-subtext">이지 조깅</div></div></div><div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell empty"></div><div class="day-cell empty"></div>
-        </div>
-      </div>
-    </div>
 
-    <div class="pace-chart-section">
-      <div class="pace-chart-title">Pace Chart</div>
-      <div class="pace-chart-grid">
-        <div class="pace-legend-item"><div class="legend-box bar-recovery"></div><div class="legend-text">Rec. (<span>5:50-6:20</span>)</div></div>
-        <div class="pace-legend-item"><div class="legend-box bar-steady"></div><div class="legend-text">Stdy. (<span>5:25-5:45</span>)</div></div>
-        <div class="pace-legend-item"><div class="legend-box bar-tempo"></div><div class="legend-text">Tmp. (<span>4:45-5:10</span>)</div></div>
-        <div class="pace-legend-item"><div class="legend-box bar-interval"></div><div class="legend-text">Int. (<span>4:20-4:40</span>)</div></div>
+      <!-- Pace Chart Footer Section (Exact Original) -->
+      <div class="pace-chart-section">
+        <div class="pace-chart-title">Pace Chart</div>
+        <div class="pace-chart-grid">
+          <div class="pace-legend-item">
+            <div class="legend-box bar-recovery"></div>
+            <div class="legend-text">Recovery (<span>5:50 ~ 6:20</span>)</div>
+          </div>
+          <div class="pace-legend-item">
+            <div class="legend-box bar-steady"></div>
+            <div class="legend-text">Steady (<span>5:25 ~ 5:45</span>)</div>
+          </div>
+          <div class="pace-legend-item">
+            <div class="legend-box bar-tempo"></div>
+            <div class="legend-text">Tempo (<span>4:45 ~ 5:10</span>)</div>
+          </div>
+          <div class="pace-legend-item">
+            <div class="legend-box bar-interval"></div>
+            <div class="legend-text">Interval (<span>4:20 ~ 4:40</span>)</div>
+          </div>
+          <div class="pace-legend-item">
+            <div class="legend-box bar-strides"></div>
+            <div class="legend-text">Strides (<span>3:50 ~ 4:10</span>)</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -405,7 +801,7 @@
       '2026-08': {
         title: 'August 2026',
         subtitle: '10K Base-Building Phase',
-        statsHtml: 'COMPLETED: <span>75.24 KM</span> | <span>10 SESSIONS</span>',
+        statsHtml: 'TARGET: <span>88.0 KM</span> | <span>11 SESSIONS</span>',
         viewId: 'view-august-2026',
         prev: null,
         next: '2026-09'
@@ -426,27 +822,42 @@
     const statsEl = document.getElementById('stats-chip-display');
     const prevBtn = document.getElementById('prev-month-btn');
     const nextBtn = document.getElementById('next-month-btn');
+    const topNavActiveLabel = document.getElementById('top-nav-active-label');
 
     function renderMonth(monthKey) {
       if (!monthsData[monthKey]) return;
       currentMonthKey = monthKey;
       const data = monthsData[monthKey];
+      
       titleEl.textContent = data.title;
       subtitleEl.textContent = data.subtitle;
       statsEl.innerHTML = data.statsHtml;
+      topNavActiveLabel.textContent = data.title.toUpperCase();
+
       document.querySelectorAll('.calendar-view').forEach(view => view.classList.remove('active'));
       document.getElementById(data.viewId).classList.add('active');
+
       prevBtn.classList.toggle('disabled', !data.prev);
       nextBtn.classList.toggle('disabled', !data.next);
-      if (window.location.hash !== '#' + monthKey) history.replaceState(null, '', '#' + monthKey);
+
+      if (window.location.hash !== '#' + monthKey) {
+        history.replaceState(null, '', '#' + monthKey);
+      }
     }
 
-    prevBtn.addEventListener('click', () => { if (monthsData[currentMonthKey].prev) renderMonth(monthsData[currentMonthKey].prev); });
-    nextBtn.addEventListener('click', () => { if (monthsData[currentMonthKey].next) renderMonth(monthsData[currentMonthKey].next); });
+    prevBtn.addEventListener('click', () => {
+      if (monthsData[currentMonthKey].prev) renderMonth(monthsData[currentMonthKey].prev);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (monthsData[currentMonthKey].next) renderMonth(monthsData[currentMonthKey].next);
+    });
+
     window.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft' && monthsData[currentMonthKey].prev) renderMonth(monthsData[currentMonthKey].prev);
       else if (e.key === 'ArrowRight' && monthsData[currentMonthKey].next) renderMonth(monthsData[currentMonthKey].next);
     });
+
     window.addEventListener('DOMContentLoaded', () => {
       const hash = window.location.hash.replace('#', '');
       renderMonth(monthsData[hash] ? hash : '2026-09');
