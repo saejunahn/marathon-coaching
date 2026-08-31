@@ -408,11 +408,11 @@
 
     <!-- Master Poster Calendar Card (Exact 600px x 800px) -->
     <div class="calendar-card">
-      <!-- Header Section -->
+      <!-- Header Section (Exact Original Master Layout) -->
       <div class="header">
         <div class="header-left">
-          <div class="main-title" id="month-title-display">September 2026</div>
-          <div class="sub-title" id="month-subtitle-display">10K Speed & Steady Buildup</div>
+          <div class="main-title">Running Calendar</div>
+          <div class="sub-title" id="month-subtitle-display">September 2026</div>
         </div>
         <div class="stats-chip" id="stats-chip-display">TARGET: <span>105.0 KM</span> | <span>12 SESSIONS</span></div>
       </div>
@@ -799,16 +799,16 @@
   <script>
     const monthsData = {
       '2026-08': {
-        title: 'August 2026',
-        subtitle: '10K Base-Building Phase',
+        title: 'Running Calendar',
+        subtitle: 'August 2026',
         statsHtml: 'TARGET: <span>88.0 KM</span> | <span>11 SESSIONS</span>',
         viewId: 'view-august-2026',
         prev: null,
         next: '2026-09'
       },
       '2026-09': {
-        title: 'September 2026',
-        subtitle: '10K Speed & Steady Buildup',
+        title: 'Running Calendar',
+        subtitle: 'September 2026',
         statsHtml: 'TARGET: <span>105.0 KM</span> | <span>12 SESSIONS</span>',
         viewId: 'view-september-2026',
         prev: '2026-08',
@@ -817,7 +817,6 @@
     };
 
     let currentMonthKey = '2026-09';
-    const titleEl = document.getElementById('month-title-display');
     const subtitleEl = document.getElementById('month-subtitle-display');
     const statsEl = document.getElementById('stats-chip-display');
     const prevBtn = document.getElementById('prev-month-btn');
@@ -829,10 +828,9 @@
       currentMonthKey = monthKey;
       const data = monthsData[monthKey];
       
-      titleEl.textContent = data.title;
       subtitleEl.textContent = data.subtitle;
       statsEl.innerHTML = data.statsHtml;
-      topNavActiveLabel.textContent = data.title.toUpperCase();
+      topNavActiveLabel.textContent = data.subtitle.toUpperCase();
 
       document.querySelectorAll('.calendar-view').forEach(view => view.classList.remove('active'));
       document.getElementById(data.viewId).classList.add('active');
