@@ -224,10 +224,6 @@
       min-height: 0;
     }
 
-    .days-grid.grid-5-rows {
-      grid-template-rows: repeat(5, 1fr);
-    }
-
     .day-cell {
       border-right: 1px solid #dcd5c7;
       border-bottom: 1px solid #dcd5c7;
@@ -445,7 +441,7 @@
             <div class="weekday-header">SUN</div>
           </div>
 
-          <div class="days-grid grid-5-rows">
+          <div class="days-grid">
             <!-- Row 1: Sep 28 ~ Oct 04 -->
             <div class="day-cell empty"></div>
             <div class="day-cell empty"></div>
@@ -488,7 +484,7 @@
                 </div>
                 <div class="workout-dist">7.5km</div>
                 <div class="workout-name">Tempo</div>
-                <div class="workout-subtext">1.5k+4.5k+1.5k</div>
+                <div class="workout-subtext">1.5k + 4.5k + 1.5k</div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">09</div></div></div>
@@ -529,7 +525,7 @@
                 </div>
                 <div class="workout-dist">8.5km</div>
                 <div class="workout-name">Interval</div>
-                <div class="workout-subtext">1k×5 (4'18")</div>
+                <div class="workout-subtext">1k x 5 (4'18")</div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">17</div></div></div>
@@ -568,7 +564,7 @@
                 </div>
                 <div class="workout-dist">8.5km</div>
                 <div class="workout-name">Interval</div>
-                <div class="workout-subtext">800m×5 (4'16")</div>
+                <div class="workout-subtext">800m x 5 (4'16")</div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">23</div></div></div>
@@ -581,7 +577,7 @@
                 </div>
                 <div class="workout-dist">13km</div>
                 <div class="workout-name">Steady</div>
-                <div class="workout-subtext">6k+7k 빌드업</div>
+                <div class="workout-subtext">6k + 7k 빌드업</div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">25</div></div></div>
@@ -608,7 +604,7 @@
                 </div>
                 <div class="workout-dist">8.5km</div>
                 <div class="workout-name">Interval</div>
-                <div class="workout-subtext">1k×5 (4'16")</div>
+                <div class="workout-subtext">1k x 5 (4'16")</div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">30</div></div></div>
@@ -621,9 +617,18 @@
                 </div>
                 <div class="workout-dist">10km</div>
                 <div class="workout-name">Steady</div>
-                <div class="workout-subtext">5k+5k 순항주</div>
+                <div class="workout-subtext">5k + 5k 지속 순항</div>
               </div>
             </div>
+            <div class="day-cell empty"></div>
+
+            <!-- Row 6: Empty Bottom Row (Unified Height with August & September) -->
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
             <div class="day-cell empty"></div>
           </div>
         </div>
@@ -1080,6 +1085,10 @@
 
       prevBtn.classList.toggle('disabled', !data.prev);
       nextBtn.classList.toggle('disabled', !data.next);
+
+      if (window.location.hash !== '#' + monthKey) {
+        history.replaceState(null, '', '#' + monthKey);
+      }
     }
 
     prevBtn.addEventListener('click', () => {
@@ -1096,11 +1105,8 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-      // Clean any stale legacy hash from address bar and always render latest active month (2026-10)
-      if (window.location.hash) {
-        history.replaceState(null, '', window.location.pathname);
-      }
-      renderMonth('2026-10');
+      const hash = window.location.hash.replace('#', '');
+      renderMonth(monthsData[hash] ? hash : '2026-10');
     });
   </script>
 </body>
