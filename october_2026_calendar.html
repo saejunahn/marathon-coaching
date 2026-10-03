@@ -227,7 +227,7 @@
     .day-cell {
       border-right: 1px solid #dcd5c7;
       border-bottom: 1px solid #dcd5c7;
-      padding: 5px 6px;
+      padding: 5px 4px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -339,11 +339,14 @@
 
     .workout-subtext {
       font-family: 'Pretendard', sans-serif;
-      font-size: 8.5px;
+      font-size: 8.2px;
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 1.2;
       color: #5c6270;
-      word-break: keep-all;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.3px;
     }
 
     /* Pace Chart Footer Section (Exact Original) */
@@ -482,7 +485,7 @@
                 </div>
                 <div class="workout-dist">7.5km</div>
                 <div class="workout-name">Tempo</div>
-                <div class="workout-subtext">1.5k + 4.5k<br>+ 1.5k</div>
+                <div class="workout-subtext">1.5k + 4.5k + 1.5k</div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">09</div></div></div>
@@ -523,7 +526,7 @@
                 </div>
                 <div class="workout-dist">8.5km</div>
                 <div class="workout-name">Interval</div>
-                <div class="workout-subtext">1k × 5<br>(4'18")</div>
+                <div class="workout-subtext">2k + 1k×5 + 1.5k</div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">17</div></div></div>
@@ -556,13 +559,13 @@
               <div class="date-header"><div class="date-num">22</div></div>
               <div class="workout-tag">
                 <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 2.5;"></div>
+                  <div class="bar-segment bar-interval" style="flex: 4;"></div>
                   <div class="bar-segment bar-recovery" style="flex: 2;"></div>
-                  <div class="bar-segment bar-interval" style="flex: 5;"></div>
-                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
                 </div>
                 <div class="workout-dist">8.5km</div>
                 <div class="workout-name">Interval</div>
-                <div class="workout-subtext">800m × 5<br>(4'15")</div>
+                <div class="workout-subtext">2.5k+800m×5+2k</div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">23</div></div></div>
@@ -602,7 +605,7 @@
                 </div>
                 <div class="workout-dist">8.5km</div>
                 <div class="workout-name">Interval</div>
-                <div class="workout-subtext">1k × 5<br>(4'15")</div>
+                <div class="workout-subtext">2k + 1k×5 + 1.5k</div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">30</div></div></div>
@@ -615,7 +618,7 @@
                 </div>
                 <div class="workout-dist">10km</div>
                 <div class="workout-name">Steady</div>
-                <div class="workout-subtext">5k + 5k<br>지속 순항</div>
+                <div class="workout-subtext">5k + 5k 순항주</div>
               </div>
             </div>
             <div class="day-cell empty"></div>
@@ -1023,7 +1026,7 @@
           </div>
           <div class="pace-legend-item">
             <div class="legend-box bar-interval"></div>
-            <div class="legend-text">Interval (<span>4:20 ~ 4:40</span>)</div>
+            <div class="legend-text">Interval (<span>4:15 ~ 4:25</span>)</div>
           </div>
           <div class="pace-legend-item">
             <div class="legend-box bar-strides"></div>
