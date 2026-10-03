@@ -339,14 +339,24 @@
 
     .workout-subtext {
       font-family: 'Pretendard', sans-serif;
-      font-size: 8.2px;
+      font-size: 8.8px;
       font-weight: 400;
-      line-height: 1.2;
+      line-height: 1.25;
       color: #5c6270;
+      word-break: keep-all;
+    }
+
+    .sub-formula {
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      letter-spacing: -0.3px;
+      display: inline-block;
+      letter-spacing: -0.2px;
+    }
+
+    .sub-desc {
+      font-size: 8.2px;
+      color: #6a707e;
+      display: inline-block;
+      margin-top: 1px;
     }
 
     /* Pace Chart Footer Section (Exact Original) */
@@ -458,7 +468,7 @@
                 </div>
                 <div class="workout-dist">10km</div>
                 <div class="workout-name">Steady</div>
-                <div class="workout-subtext">5k + 5k 빌드업</div>
+                <div class="workout-subtext"><span class="sub-formula">5k + 5k</span><br><span class="sub-desc">빌드업</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">04</div></div></div>
@@ -485,7 +495,7 @@
                 </div>
                 <div class="workout-dist">7.5km</div>
                 <div class="workout-name">Tempo</div>
-                <div class="workout-subtext">1.5k + 4.5k + 1.5k</div>
+                <div class="workout-subtext"><span class="sub-formula">1.5k + 4.5k + 1.5k</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">09</div></div></div>
@@ -498,7 +508,7 @@
                 </div>
                 <div class="workout-dist">11km</div>
                 <div class="workout-name">Steady</div>
-                <div class="workout-subtext">5k + 6k 빌드업</div>
+                <div class="workout-subtext"><span class="sub-formula">5k + 6k</span><br><span class="sub-desc">빌드업</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">11</div></div></div>
@@ -526,7 +536,7 @@
                 </div>
                 <div class="workout-dist">8.5km</div>
                 <div class="workout-name">Interval</div>
-                <div class="workout-subtext">2k + 1k×5 + 1.5k</div>
+                <div class="workout-subtext"><span class="sub-formula">2k + 1k×5 + 1.5k</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">17</div></div></div>
@@ -539,7 +549,7 @@
                 </div>
                 <div class="workout-dist">12km</div>
                 <div class="workout-name">Steady</div>
-                <div class="workout-subtext">6k + 6k 빌드업</div>
+                <div class="workout-subtext"><span class="sub-formula">6k + 6k</span><br><span class="sub-desc">빌드업</span></div>
               </div>
             </div>
 
@@ -565,7 +575,7 @@
                 </div>
                 <div class="workout-dist">8.5km</div>
                 <div class="workout-name">Interval</div>
-                <div class="workout-subtext">2.5k+800m×5+2k</div>
+                <div class="workout-subtext"><span class="sub-formula">2.5k+800m×5+2k</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">23</div></div></div>
@@ -578,7 +588,7 @@
                 </div>
                 <div class="workout-dist">13km</div>
                 <div class="workout-name">Steady</div>
-                <div class="workout-subtext">6k + 7k 빌드업</div>
+                <div class="workout-subtext"><span class="sub-formula">6k + 7k</span><br><span class="sub-desc">빌드업</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">25</div></div></div>
@@ -605,7 +615,7 @@
                 </div>
                 <div class="workout-dist">8.5km</div>
                 <div class="workout-name">Interval</div>
-                <div class="workout-subtext">2k + 1k×5 + 1.5k</div>
+                <div class="workout-subtext"><span class="sub-formula">2k + 1k×5 + 1.5k</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">30</div></div></div>
@@ -618,7 +628,7 @@
                 </div>
                 <div class="workout-dist">10km</div>
                 <div class="workout-name">Steady</div>
-                <div class="workout-subtext">5k + 5k 순항주</div>
+                <div class="workout-subtext"><span class="sub-formula">5k + 5k</span><br><span class="sub-desc">순항주</span></div>
               </div>
             </div>
             <div class="day-cell empty"></div>
@@ -684,7 +694,7 @@
                 </div>
                 <div class="workout-dist">11km</div>
                 <div class="workout-name">Steady</div>
-                <div class="workout-subtext">5k + 6k 빌드업</div>
+                <div class="workout-subtext"><span class="sub-formula">5k + 6k</span><br><span class="sub-desc">빌드업</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">06</div></div></div>
@@ -711,7 +721,7 @@
                 </div>
                 <div class="workout-dist">8km</div>
                 <div class="workout-name">Tempo</div>
-                <div class="workout-subtext">1.5k + 5k + 1.5k</div>
+                <div class="workout-subtext"><span class="sub-formula">1.5k + 5k + 1.5k</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">11</div></div></div>
@@ -740,7 +750,7 @@
                 </div>
                 <div class="workout-dist">8km</div>
                 <div class="workout-name">Tempo</div>
-                <div class="workout-subtext">1.5k + 5k + 1.5k</div>
+                <div class="workout-subtext"><span class="sub-formula">1.5k + 5k + 1.5k</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">18</div></div></div>
@@ -753,7 +763,7 @@
                 </div>
                 <div class="workout-dist">12km</div>
                 <div class="workout-name">Steady</div>
-                <div class="workout-subtext">6k + 6k 빌드업</div>
+                <div class="workout-subtext"><span class="sub-formula">6k + 6k</span><br><span class="sub-desc">빌드업</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">20</div></div></div>
@@ -780,7 +790,7 @@
                 </div>
                 <div class="workout-dist">7km</div>
                 <div class="workout-name">Tempo</div>
-                <div class="workout-subtext">1.5k + 4k + 1.5k</div>
+                <div class="workout-subtext"><span class="sub-formula">1.5k + 4k + 1.5k</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">25</div></div></div>
@@ -793,7 +803,7 @@
                 </div>
                 <div class="workout-dist">12km</div>
                 <div class="workout-name">Steady</div>
-                <div class="workout-subtext">6k + 6k 빌드업</div>
+                <div class="workout-subtext"><span class="sub-formula">6k + 6k</span><br><span class="sub-desc">빌드업</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">27</div></div></div>
