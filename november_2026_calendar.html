@@ -432,7 +432,7 @@
           <div class="main-title">Running Calendar</div>
           <div class="sub-title" id="month-subtitle-display">November 2026</div>
         </div>
-        <div class="stats-chip" id="stats-chip-display">TARGET: <span>90.5 KM</span> | <span>12 SESSIONS</span></div>
+        <div class="stats-chip" id="stats-chip-display">TARGET: <span>94.5 KM</span> | <span>12 SESSIONS</span></div>
       </div>
 
       <!-- Calendar Container -->
@@ -522,12 +522,12 @@
               <div class="workout-tag">
                 <div class="badge-bar-segmented">
                   <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
-                  <div class="bar-segment bar-interval" style="flex: 2.4;"></div>
-                  <div class="bar-segment bar-recovery" style="flex: 3.1;"></div>
+                  <div class="bar-segment bar-tempo" style="flex: 4;"></div>
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
                 </div>
                 <div class="workout-dist">7km</div>
-                <div class="workout-name">Interval</div>
-                <div class="workout-subtext"><span class="sub-formula">1.5k+400m×6+2k</span><br><span class="sub-desc">휴식 200m (6'15")</span></div>
+                <div class="workout-name">Tempo</div>
+                <div class="workout-subtext"><span class="sub-formula">1.5k + 4k + 1.5k</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">13</div></div></div>
@@ -585,41 +585,45 @@
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">22</div></div></div>
 
-            <!-- Row 5: Nov 23 ~ Nov 29 (Race Week) -->
+            <!-- Row 5: Nov 23 ~ Nov 29 -->
             <div class="day-cell"><div class="date-header"><div class="date-num">23</div></div></div>
             <div class="day-cell">
               <div class="date-header"><div class="date-num">24</div></div>
               <div class="workout-tag">
-                <div class="badge-bar-segmented">
-                  <div class="bar-segment bar-recovery" style="flex: 4.8;"></div>
-                  <div class="bar-segment bar-strides" style="flex: 0.2;"></div>
-                </div>
-                <div class="workout-dist">5km</div>
+                <div class="badge-bar bar-recovery"></div>
+                <div class="workout-dist">6km</div>
                 <div class="workout-name">Recovery</div>
-                <div class="workout-subtext"><span class="sub-formula">이지 + 질주 2회</span></div>
+                <div class="workout-subtext">이지 조깅</div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">25</div></div></div>
             <div class="day-cell">
               <div class="date-header"><div class="date-num">26</div></div>
               <div class="workout-tag">
-                <div class="badge-bar bar-recovery"></div>
-                <div class="workout-dist">4km</div>
-                <div class="workout-name">Recovery</div>
-                <div class="workout-subtext">셰이크아웃 웜업</div>
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                  <div class="bar-segment bar-tempo" style="flex: 4;"></div>
+                  <div class="bar-segment bar-recovery" style="flex: 1.5;"></div>
+                </div>
+                <div class="workout-dist">7km</div>
+                <div class="workout-name">Tempo</div>
+                <div class="workout-subtext"><span class="sub-formula">1.5k + 4k + 1.5k</span></div>
               </div>
             </div>
             <div class="day-cell"><div class="date-header"><div class="date-num">27</div></div></div>
-            <div class="day-cell"><div class="date-header"><div class="date-num">28</div></div></div>
             <div class="day-cell">
-              <div class="date-header"><div class="date-num">29</div></div>
+              <div class="date-header"><div class="date-num">28</div></div>
               <div class="workout-tag">
-                <div class="badge-bar bar-interval"></div>
+                <div class="badge-bar-segmented">
+                  <div class="bar-segment bar-recovery" style="flex: 5;"></div>
+                  <div class="bar-segment bar-steady" style="flex: 5;"></div>
+                </div>
                 <div class="workout-dist">10km</div>
-                <div class="workout-name">Race (10K)</div>
-                <div class="workout-subtext"><span class="sub-formula">안중근 평화 마라톤</span></div>
+                <div class="workout-name">Steady</div>
+                <div class="workout-subtext"><span class="sub-formula">5k + 5k 빌드업</span></div>
               </div>
             </div>
+            <div class="day-cell"><div class="date-header"><div class="date-num">29</div></div></div>
 
             <!-- Row 6: Nov 30 ~ Dec 06 -->
             <div class="day-cell"><div class="date-header"><div class="date-num">30</div></div></div>
@@ -1273,7 +1277,7 @@
       '2026-11': {
         title: 'Running Calendar',
         subtitle: 'November 2026',
-        statsHtml: 'TARGET: <span>90.5 KM</span> | <span>12 SESSIONS</span>',
+        statsHtml: 'TARGET: <span>94.5 KM</span> | <span>12 SESSIONS</span>',
         viewId: 'view-november-2026',
         prev: '2026-10',
         next: null
